@@ -1,0 +1,1340 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>Husky — Isaac scenarios</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #15191e;
+      color: #e6edf3;
+      font: 14px system-ui;
+    }
+    a {
+      color: #a5c9ed;
+    }
+    header {
+      padding: 12px 18px;
+      border-bottom: 1px solid #39424c;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      min-height: 52px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      height: calc(100vh - 52px);
+    }
+    aside {
+      padding: 16px;
+      background: #20262d;
+      overflow: auto;
+    }
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+    }
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+    input,
+    select,
+    textarea {
+      font: inherit;
+      background: #11171e;
+      color: #eef4fa;
+      border: 1px solid #596575;
+      border-radius: 4px;
+      padding: 7px;
+      max-width: 100%;
+    }
+    input[type="number"] {
+      width: 100%;
+    }
+    input[type="checkbox"] {
+      width: auto;
+    }
+    select,
+    textarea,
+    .wide {
+      width: 100%;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background: #354252;
+      color: white;
+      border: 1px solid #607184;
+      border-radius: 5px;
+      padding: 9px 12px;
+      cursor: pointer;
+      touch-action: none;
+      font: inherit;
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+    button:active {
+      background: #517693;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0;
+    }
+    .primary {
+      background: #275a42;
+    }
+    .stop {
+      background: #992e35;
+      font-weight: 700;
+    }
+    .hint {
+      font-size: 12px;
+      color: #b2c0ce;
+      line-height: 1.5;
+    }
+    pre {
+      font: 12px monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .error {
+      color: #ffaaaa;
+    }
+    .good {
+      color: #8cdeb1;
+    }
+    #scenarioStatus {
+      border-left: 3px solid #719bc0;
+      padding: 8px;
+      background: #171e26;
+      line-height: 1.5;
+      white-space: pre-line;
+      margin: 12px 0;
+    }
+    .previews {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .previews img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      background: #111;
+    }
+    .pad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 14px 0;
+    }
+    details {
+      border-top: 1px solid #414a56;
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .two {
+      grid-template-columns: 1fr 1fr;
+    }
+    fieldset {
+      border: 1px solid #49586b;
+      border-radius: 5px;
+      margin: 14px 0;
+      padding: 12px;
+    }
+    legend {
+      color: #bdd4e9;
+    }
+    dialog {
+      color: #e6edf3;
+      background: #20262d;
+      border: 1px solid #71859c;
+      border-radius: 8px;
+      width: min(1100px, 95vw);
+      max-height: 94vh;
+      padding: 20px;
+    }
+    dialog::backdrop {
+      background: #000a;
+    }
+    .tableWrap {
+      overflow: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 12px;
+    }
+    td,
+    th {
+      text-align: left;
+      padding: 5px;
+      border-bottom: 1px solid #38424e;
+    }
+    #props {
+      min-width: 1000px;
+    }
+    #props input {
+      min-width: 68px;
+      width: 100%;
+      padding: 5px;
+    }
+    #props .propId {
+      min-width: 110px;
+    }
+    #props .asset {
+      min-width: 220px;
+    }
+    .editorTop {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+    .editorTop h2 {
+      margin: 0;
+    }
+    #result {
+      border-left: 3px solid #647d91;
+      padding-left: 10px;
+    }
+    @media (max-width: 850px) {
+      main {
+        grid-template-columns: 330px 1fr;
+      }
+      header {
+        font-size: 12px;
+        gap: 10px;
+      }
+    }
+  </style>
+  <header>
+    <strong>Husky · Isaac scenarios</strong
+    ><span id="connection">Connecting…</span
+    ><a href="http://127.0.0.1:8080/" target="_blank" rel="noopener"
+      >OmniVLA dashboard ↗</a
+    >
+  </header>
+  <main>
+    <aside tabindex="0">
+      <details open>
+        <summary>Ablation study</summary>
+        <label><input id="studyOnly" type="checkbox" checked /> Show the 20 study cases only</label>
+        <div class="grid two">
+          <label>Study name<input id="studyName" class="wide" value="warehouse-v1" maxlength="120" /></label>
+          <label>Repeat<input id="repeat" type="number" min="1" max="10000" value="1" step="1" /></label>
+        </div>
+        <label>Checkpoint<select id="checkpoint"><option value="original">Original · 120000</option><option value="cast">CAST · 210000</option></select></label>
+        <button id="switchCheckpoint">Load checkpoint</button>
+        <p id="checkpointInfo" class="hint"></p>
+        <label>Camera preset<select id="cameraPreset"></select></label>
+        <p class="hint">Load / Reset applies the selected camera. Edit and save camera presets below. Motion starts only when you press Start &amp; Record.</p>
+        <label><input id="keepMode" type="checkbox" checked /> Keep modality when changing cases</label>
+        <p id="studyProgress" class="hint"></p>
+      </details>
+      <label for="scenarioSelect">Scenario</label
+      ><select id="scenarioSelect"></select>
+      <p id="description" class="hint"></p>
+      <p id="scoringDescription" class="hint"></p>
+      <label for="mode">Goal modality</label
+      ><select id="mode">
+        <option value="language">Language</option>
+        <option value="pose">Pose</option>
+        <option value="image">Image</option>
+        <option value="language_pose">Language + pose</option>
+        <option value="pose_image">Pose + image</option>
+      </select>
+      <label for="prompt">Instruction</label
+      ><textarea id="prompt" rows="2"></textarea>
+      <p class="hint">Changing the instruction leaves the scoring target unchanged. Edit the evaluation region when changing the target object.</p>
+      <div class="buttons">
+        <button id="load">Load / Reset</button
+        ><button id="start" class="primary" disabled>Start & Record</button
+        ><button id="drive" disabled>Enable motion (no recording)</button
+        ><button id="abort" class="stop">Abort / STOP</button>
+        <button id="finish">Finish &amp; save run</button><button id="nextCase">Next case</button>
+      </div>
+      <p class="hint">Enable motion runs the model without recording. Start & Record evaluates a trial.</p>
+      <div id="scenarioStatus" role="status">Choose a scenario.</div>
+      <div class="buttons">
+        <button id="edit">Edit</button><button id="duplicate">Duplicate</button
+        ><button id="new">New</button>
+      </div>
+      <div class="previews">
+        <div>
+          <span class="hint">Robot camera</span
+          ><img id="currentImage" alt="Robot camera" />
+        </div>
+        <div>
+          <span class="hint">Image goal</span
+          ><img id="goalImage" alt="Load an image-mode scenario" />
+        </div>
+      </div>
+      <div id="result"></div>
+      <details>
+        <summary>Camera position and field of view</summary>
+        <p class="hint">Offsets from the configured camera mount, in metres. Negative X moves it backwards. Apply with motion stopped; reload image-goal scenarios afterward.</p>
+        <div class="grid">
+          <label>X — forward<input id="cameraX" type="number" min="-1" max="1" step="0.05" /></label>
+          <label>Y — left<input id="cameraY" type="number" min="-1" max="1" step="0.05" /></label>
+          <label>Z — up<input id="cameraZ" type="number" min="-1" max="1" step="0.05" /></label>
+        </div>
+        <label>Horizontal FOV [deg]<input id="cameraFov" type="number" min="1" max="179" step="1" /></label>
+        <button id="applyCamera">Apply camera live</button>
+        <label>Preset name<input id="cameraPresetName" class="wide" placeholder="e.g. rear-high-120" maxlength="120" /></label>
+        <button id="saveCameraPreset">Save camera preset</button>
+        <p id="cameraInfo" class="hint"></p>
+        <p id="cameraError" class="error" role="alert"></p>
+      </details>
+      <details>
+        <summary>Recent results</summary>
+        <div class="buttons">
+          <button id="refreshResults">Refresh</button
+          ><button id="downloadResults">Download summaries</button>
+          <button id="reviewResults">Review &amp; score</button><button id="downloadCsv">Export CSV</button>
+        </div>
+        <label><input id="onlyStudyResults" type="checkbox" checked /> Results for this study name only</label>
+        <pre id="results"></pre>
+      </details>
+      <details>
+        <summary>Manual driving / authoring</summary>
+        <p class="hint">
+          Manual driving aborts a running trial. Use the editor’s “Use robot
+          pose” buttons to capture a start or goal, then Load / Reset before
+          recording.
+        </p>
+        <label
+          ><input id="enable" type="checkbox" /> Enable manual driving</label
+        >
+        <div class="grid two">
+          <label
+            >Forward speed [m/s]<input
+              id="speed"
+              type="number"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.3" /></label
+          ><label
+            >Turn speed [rad/s]<input
+              id="turn"
+              type="number"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.5"
+          /></label>
+        </div>
+        <div class="pad">
+          <span></span><button data-key="w">↑</button><span></span
+          ><button data-key="a">↶</button><button data-key="s">↓</button
+          ><button data-key="d">↷</button>
+        </div>
+        <p class="hint">
+          Hold a button or WASD while this panel has focus. Release to brake.
+          Space aborts/stops. The viewer keeps its camera shortcuts.
+        </p>
+        <pre id="state"></pre>
+        <button id="release">Leave scenario / use model dashboard</button>
+      </details>
+    </aside>
+    <iframe
+      id="viewer"
+      title="Isaac Sim interface"
+      allow="autoplay;fullscreen;clipboard-read;clipboard-write;compute-pressure"
+    ></iframe>
+  </main>
+  <dialog id="editor">
+    <div class="editorTop">
+      <h2>Scenario editor</h2>
+      <button id="closeEditor">Close</button>
+    </div>
+    <p class="hint">
+      Positions are warehouse world coordinates in metres. Yaw is degrees
+      counterclockwise from +X. Saving updates scenarios/warehouse.yaml; Load /
+      Reset applies the draft to Isaac.
+    </p>
+    <div class="grid two">
+      <label
+        >ID<input class="wide" id="editId" pattern="[a-zA-Z0-9_-]+" /></label
+      ><label>Name<input class="wide" id="editName" /></label>
+    </div>
+    <label
+      >Description<textarea id="editDescription" rows="2"></textarea>
+    </label>
+    <div class="grid two">
+      <label>Family<input class="wide" id="editFamily" /></label
+      ><label>Difficulty<input class="wide" id="editDifficulty" /></label>
+    </div>
+    <fieldset>
+      <legend>Robot start</legend>
+      <div class="grid" id="robotFields"></div>
+      <button data-capture="robot">Use robot pose</button>
+    </fieldset>
+    <fieldset>
+      <legend>Pose goal</legend>
+      <div class="grid" id="poseFields"></div>
+      <div class="buttons">
+        <button data-capture="pose">Use robot pose</button
+        ><button id="copyGoal">
+          Use this pose for image and evaluation goals
+        </button>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Image goal</legend>
+      <div class="grid" id="imageFields"></div>
+      <div class="buttons">
+        <button data-capture="image">Use robot pose as viewpoint</button
+        ><button id="autoImage">Capture at this viewpoint on load</button>
+      </div>
+      <label
+        >Or upload a saved goal image<input
+          type="file"
+          id="imageUpload"
+          accept="image/png,image/jpeg"
+      /></label>
+      <p id="imageFile" class="hint"></p>
+    </fieldset>
+    <fieldset>
+      <legend>Evaluation region — used only for scoring</legend>
+      <div class="grid">
+        <label>X [m]<input id="evalX" type="number" step="0.1" /></label
+        ><label>Y [m]<input id="evalY" type="number" step="0.1" /></label
+        ><label
+          >Radius [m]<input
+            id="radius"
+            type="number"
+            min="0.05"
+            max="5"
+            step="0.05" /></label
+        ><label
+          >Timeout [sim seconds]<input
+            id="timeout"
+            type="number"
+            min="1"
+            max="3600" /></label
+        ><label
+          >Heading tolerance [deg, optional]<input
+            id="heading"
+            type="number"
+            min="1"
+            max="180"
+            placeholder="Ignore heading"
+        /></label>
+      </div>
+      <button data-capture="evaluation">Use robot position</button>
+      <label for="languageScoring">Optional language scoring regions (JSON)</label>
+      <textarea id="languageScoring" rows="9" spellcheck="false"></textarea>
+      <p class="hint">
+        checkpoints: ordered rectangles; forbidden: rectangles that mark a route
+        violation; distractors: circles that record visits. Rectangles use label,
+        x_min, x_max, y_min, y_max; circles use label, x, y, radius_m.
+        Use {} for arrival-only scoring. These regions never steer the robot.
+      </p>
+      <p class="hint">
+        Arrival has no stopping requirement. Contacts are recorded and never end
+        a trial.
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend>Path speed limits</legend>
+      <div class="grid two">
+        <label
+          >Translation [m/s]<input
+            id="maxLinear"
+            type="number"
+            min="0.01"
+            max="0.5"
+            step="0.05" /></label
+        ><label
+          >Rotation [rad/s]<input
+            id="maxAngular"
+            type="number"
+            min="0.01"
+            max="1"
+            step="0.05"
+        /></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Scenario props</legend>
+      <p class="hint">
+        Z is the prop’s bottom height. Size is local length, width, height. USD
+        props use size as XYZ scale and retain their asset colliders.
+      </p>
+      <div class="tableWrap">
+        <table id="props">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Kind</th>
+              <th>X</th>
+              <th>Y</th>
+              <th>Z</th>
+              <th>Yaw</th>
+              <th>Length</th>
+              <th>Width</th>
+              <th>Height</th>
+              <th>Colour</th>
+              <th>USD asset (optional)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button id="addProp">Add prop</button>
+    </fieldset>
+    <p id="editorError" class="error" role="alert"></p>
+    <div class="buttons">
+      <button id="applyDraft">Apply draft to panel</button
+      ><button id="save" class="primary">Save scenario</button>
+    </div>
+  </dialog>
+  <dialog id="reviewDialog">
+    <div class="editorTop"><h2>Review recorded run</h2><button id="closeReview">Close</button></div>
+    <label>Recorded run<select id="reviewRun"></select></label>
+    <pre id="reviewInfo"></pre>
+    <svg id="reviewPlot" style="width:100%;height:340px;background:#121820" aria-label="Executed route and scenario props"></svg>
+    <p class="hint">Executed path in yellow; green goal region; translucent route gates. Map shows scenario props, excluding native warehouse geometry.</p>
+    <div class="previews"><div>Start<img id="reviewStart" alt="Start camera" /></div><div>End<img id="reviewEnd" alt="End camera" /></div></div>
+    <p class="hint">Automatic measurements are evidence. Your judgments and score are saved separately. Stopping is unscored; collision does not end a run.</p>
+    <div class="grid">
+      <label>Arrival<select id="reviewArrival"><option value="">Unscored</option><option value="pass">Pass</option><option value="fail">Fail</option><option value="unsure">Unsure</option><option value="na">N/A</option></select></label>
+      <label>Route adherence<select id="reviewRoute"><option value="">Unscored</option><option value="pass">Pass</option><option value="fail">Fail</option><option value="unsure">Unsure</option><option value="na">N/A</option></select></label>
+      <label>Collision avoidance<select id="reviewCollision"><option value="">Unscored</option><option value="pass">Pass</option><option value="fail">Fail</option><option value="unsure">Unsure</option><option value="na">N/A</option></select></label>
+    </div>
+    <label>Your score (optional, 0–100)<input id="reviewScore" type="number" min="0" max="100" step="any" /></label>
+    <label>Notes<textarea id="reviewNotes" rows="3" maxlength="8000"></textarea></label>
+    <div class="buttons"><button id="saveReview" class="primary">Save review</button></div><p id="reviewMessage" role="status"></p>
+  </dialog>
+  <script>
+    const $ = (id) => document.getElementById(id),
+      clone = (v) => JSON.parse(JSON.stringify(v));
+    let library = [],
+      draft = null,
+      lastState = null,
+      dirty = false,
+      viewerStarted = false,
+      resultRows = [],
+      lastResultId = "",
+      refreshPending = false;
+    let cameraDirty = false;
+    let reviewing = "", selectedCameraName = "custom";
+    const storageKey = "husky-ablation-v1";
+    let preferences = {};
+    try { preferences = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch {}
+    let cameraPresets = preferences.cameraPresets || [
+      {name:"rear-90", horizontal_fov_deg:90, offset_m:[-0.8106,0,0.4875]},
+      {name:"rear-120", horizontal_fov_deg:120, offset_m:[-0.8106,0,0.4875]},
+      {name:"front-90", horizontal_fov_deg:90, offset_m:[0,0,0.4875]},
+      {name:"front-120", horizontal_fov_deg:120, offset_m:[0,0,0.4875]},
+    ];
+    function savePreferences() {
+      preferences = {cameraPresets, studyName:$("studyName").value, repeat:$("repeat").value,
+        checkpoint:$("checkpoint").value, mode:$("mode").value};
+      localStorage.setItem(storageKey, JSON.stringify(preferences));
+    }
+    function cameraFields() {
+      const ids = ["cameraX","cameraY","cameraZ","cameraFov"];
+      if (ids.some(id => $(id).value.trim() === "" || !Number.isFinite(Number($(id).value))))
+        throw Error("Fill in all camera fields with finite numbers.");
+      return {offset_m:ids.slice(0,3).map(id=>Number($(id).value)), horizontal_fov_deg:Number($("cameraFov").value)};
+    }
+    function cameraOptions() {
+      $("cameraPreset").replaceChildren(new Option("Custom / current camera", "custom"),
+        ...cameraPresets.map(p=>new Option(p.name,p.name)));
+      $("cameraPreset").value = selectedCameraName;
+    }
+    $("cameraPreset").onchange = () => {
+      selectedCameraName = $("cameraPreset").value;
+      const p = cameraPresets.find(p=>p.name===selectedCameraName);
+      if (p) {
+        ["cameraX","cameraY","cameraZ"].forEach((id,i)=>$(id).value=p.offset_m[i]);
+        $("cameraFov").value = p.horizontal_fov_deg;
+        $("cameraPresetName").value = p.name;
+        cameraDirty = true;
+      }
+      markDirty();
+    };
+    $("saveCameraPreset").onclick = () => {
+      try {
+        const name = $("cameraPresetName").value.trim();
+        if (!name || name === "custom") throw Error("Choose a preset name other than custom.");
+        const preset = {name,...cameraFields()};
+        if (!(preset.horizontal_fov_deg>0 && preset.horizontal_fov_deg<180) || preset.offset_m.some(v=>Math.abs(v)>1))
+          throw Error("FOV must be 0–180°, offsets within ±1 m.");
+        cameraPresets = cameraPresets.filter(p=>p.name!==name).concat([preset]);
+        selectedCameraName=name; cameraOptions(); savePreferences();
+        $("cameraError").textContent="Preset saved in this browser.";
+      } catch(e) { $("cameraError").textContent=e.message; }
+    };
+    $("switchCheckpoint").onclick = async () => {
+      try {
+        await api("/api/scenarios/checkpoint", {checkpoint:$("checkpoint").value});
+        savePreferences(); dirty=true; await refresh();
+      } catch(e) { error(e); }
+    };
+    $("checkpoint").onchange = () => { savePreferences(); markDirty(); };
+    for (const id of ["studyName","repeat"]) $(id).onchange = savePreferences;
+    function visibleCases() { return library.filter(s=>!$("studyOnly").checked || /^study-(0[1-9]|1[0-9]|20)$/.test(s.id)); }
+    $("studyOnly").onchange = () => {
+      selectOptions();
+      const first=library.find(s=>s.id===$("scenarioSelect").value);
+      if(first) setDraft(first, true);
+      markDirty();
+    };
+    $("nextCase").onclick = () => {
+      const cases=[...$("scenarioSelect").options], index=cases.findIndex(o=>o.value===$("scenarioSelect").value);
+      if(cases.length) { $("scenarioSelect").value=cases[(index+1)%cases.length].value; $("scenarioSelect").onchange(); }
+    };
+    $("finish").onclick = async () => { try { await api("/api/scenarios/finish",{}); await refresh(); } catch(e) { error(e); } };
+    const keys = new Set();
+    let commandPending = false,
+      commandQueued = false;
+    async function api(path, body) {
+      const r = await fetch(
+        path,
+        body === undefined
+          ? {}
+          : {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            },
+      );
+      const d = await r.json();
+      if (!r.ok || d.ok === false) throw Error(d.error || r.statusText);
+      return d;
+    }
+    function error(e) {
+      $("scenarioStatus").textContent = e.message;
+      $("scenarioStatus").className = "error";
+    }
+    function markDirty() {
+      dirty = true;
+      updateButtons();
+    }
+    for (const id of ["cameraX", "cameraY", "cameraZ", "cameraFov"])
+      $(id).oninput = () => { cameraDirty = true; selectedCameraName="custom"; $("cameraPreset").value="custom"; markDirty(); };
+    $("applyCamera").onclick = async () => {
+      try {
+        $("cameraError").textContent = "";
+        await api("/api/camera", cameraFields());
+        cameraDirty = false;
+        markDirty();
+        await refresh();
+      } catch (e) {
+        $("cameraError").textContent = e.message;
+      }
+    };
+    function updateButtons() {
+      const phase = lastState?.scenario?.phase,
+        busy = ["loading", "starting", "switching"].includes(phase);
+      const loadedStep=lastState?.scenario?.model?.resume_step,
+        chosenStep=$("checkpoint").value==="cast" ? 210000 : 120000;
+      $("start").disabled = phase !== "ready" || dirty || loadedStep!==chosenStep;
+      $("drive").disabled = dirty || !lastState?.scenario?.epoch ||
+        !["ready", "manual", "finished", "aborted", "idle"].includes(phase);
+      $("drive").textContent = phase === "manual" && lastState.scenario.model.motion_enabled
+        ? "Disable motion" : "Enable motion (no recording)";
+      $("prompt").disabled = !["language", "language_pose"].includes($("mode").value);
+      $("load").disabled = busy || phase === "running" || !lastState?.scenario?.model_online || !lastState?.scenario?.model?.model_loaded;
+      $("scenarioSelect").disabled = busy || phase === "running";
+      $("mode").disabled = busy || phase === "running";
+      $("finish").disabled = phase !== "running";
+      $("nextCase").disabled = busy || phase === "running";
+      $("switchCheckpoint").disabled = busy || ["running","manual"].includes(phase) || !!lastState?.controller?.enabled;
+      $("checkpoint").disabled = busy || phase === "running";
+      $("cameraPreset").disabled = busy || phase === "running";
+      $("studyOnly").disabled = busy || phase === "running";
+      const reviewed=new Set(resultRows.filter(r=>{
+        const c=r.camera;
+        let expected;try { expected=cameraFields(); } catch { return false; }
+        return r.study===$("studyName").value && r.repeat===Number($("repeat").value) &&
+          r.mode===$("mode").value && r.resume_step===chosenStep && r.id &&
+          r.review?.updated_at &&
+          c && Math.abs(c.horizontal_fov_deg-expected.horizontal_fov_deg)<.01 &&
+          c.offset_m.every((v,i)=>Math.abs(v-expected.offset_m[i])<.0001);
+      }).map(r=>r.scenario_id).filter(id=>/^study-(0[1-9]|1[0-9]|20)$/.test(id)));
+      $("studyProgress").textContent=`Reviewed ${reviewed.size}/20 case IDs for this study, repeat, modality, camera and checkpoint.`;
+    }
+    function selectOptions(id) {
+      const select = $("scenarioSelect");
+      select.replaceChildren();
+      let group = null,
+        family = "";
+      const ordered = visibleCases().sort((a, b) =>
+        Number(!a.id.startsWith("study-")) - Number(!b.id.startsWith("study-")) ||
+        Number(!a.family.startsWith("language_")) - Number(!b.family.startsWith("language_")) ||
+        a.family.localeCompare(b.family));
+      for (const s of ordered) {
+        if (s.family !== family) {
+          family = s.family;
+          group = document.createElement("optgroup");
+          group.label = family.replaceAll("_", " ");
+          select.append(group);
+        }
+        const o = document.createElement("option");
+        o.value = s.id;
+        o.textContent = s.name;
+        group.append(o);
+      }
+      if (id && [...select.options].some(o=>o.value===id)) select.value = id;
+    }
+    function setDraft(s, preserveMode=false) {
+      const mode=$("mode").value;
+      draft = clone(s);
+      if(preserveMode && $("keepMode").checked) draft.mode=mode;
+      $("mode").value = draft.mode;
+      $("prompt").value = s.prompt;
+      $("description").textContent = `${s.difficulty} · ${s.description}`;
+      const e = s.evaluation;
+      $("scoringDescription").textContent =
+        `Scoring destination: (${e.x.toFixed(1)}, ${e.y.toFixed(1)}) m, radius ${e.radius_m} m.` +
+        (e.checkpoints?.length ? ` Ordered gates: ${e.checkpoints.map(r => r.label).join(" → ")}.` : " Arrival only.") +
+        (e.forbidden?.length ? " Wrong-route crossings are recorded." : "");
+      populateEditor();
+    }
+    function poseInputs(prefix, container) {
+      for (const [key, label] of [
+        ["x", "X [m]"],
+        ["y", "Y [m]"],
+        ["yaw_deg", "Yaw [deg]"],
+      ]) {
+        const l = document.createElement("label");
+        l.textContent = label;
+        const i = document.createElement("input");
+        i.id = prefix + "_" + key;
+        i.type = "number";
+        i.step = key === "yaw_deg" ? "5" : "0.1";
+        l.append(i);
+        $(container).append(l);
+      }
+    }
+    for (const [p, c] of [
+      ["robot", "robotFields"],
+      ["pose", "poseFields"],
+      ["image", "imageFields"],
+    ])
+      poseInputs(p, c);
+    function setPose(prefix, p) {
+      for (const k of ["x", "y", "yaw_deg"]) $(prefix + "_" + k).value = p[k];
+    }
+    function getPose(prefix) {
+      return Object.fromEntries(
+        ["x", "y", "yaw_deg"].map((k) => [
+          k,
+          Number($(prefix + "_" + k).value),
+        ]),
+      );
+    }
+    function populateEditor() {
+      if (!draft) return;
+      for (const [id, key] of [
+        ["editId", "id"],
+        ["editName", "name"],
+        ["editDescription", "description"],
+        ["editFamily", "family"],
+        ["editDifficulty", "difficulty"],
+      ])
+        $(id).value = draft[key] || "";
+      setPose("robot", draft.robot);
+      setPose("pose", draft.pose_goal);
+      setPose("image", draft.image_goal.viewpoint);
+      $("imageFile").textContent =
+        draft.image_goal.file || "Automatic capture from the viewpoint above";
+      $("evalX").value = draft.evaluation.x;
+      $("evalY").value = draft.evaluation.y;
+      $("radius").value = draft.evaluation.radius_m;
+      $("timeout").value = draft.evaluation.timeout_s;
+      $("heading").value = draft.evaluation.heading_tolerance_deg ?? "";
+      $("languageScoring").value = JSON.stringify(Object.fromEntries(
+        ["checkpoints", "forbidden", "distractors"].filter(k => draft.evaluation[k]?.length)
+          .map(k => [k, draft.evaluation[k]])), null, 2);
+      $("maxLinear").value = draft.motion.max_linear;
+      $("maxAngular").value = draft.motion.max_angular;
+      $("props").querySelector("tbody").replaceChildren();
+      for (const p of draft.props) addProp(p);
+      $("editorError").textContent = "";
+    }
+    function addProp(
+      p = {
+        id: "prop_" + Date.now().toString().slice(-6),
+        kind: "crate",
+        x: lastState?.x || 0,
+        y: lastState?.y || 0,
+        z: 0,
+        yaw_deg: 0,
+        size: [0.8, 0.8, 0.7],
+        color: "#9a7049",
+      },
+    ) {
+      const row = document.createElement("tr");
+      const field = (key, type, value, cls = "") => {
+        const td = document.createElement("td"),
+          i = document.createElement("input");
+        i.dataset.key = key;
+        i.type = type;
+        i.value = value;
+        i.className = cls;
+        if (type === "number") i.step = "0.1";
+        td.append(i);
+        row.append(td);
+      };
+      field("id", "text", p.id, "propId");
+      const td = document.createElement("td"),
+        select = document.createElement("select");
+      select.dataset.key = "kind";
+      for (const kind of ["barrel", "crate", "pallet", "cone", "box", "couch", "usd"]) {
+        const o = document.createElement("option");
+        o.value = o.textContent = kind;
+        select.append(o);
+      }
+      select.value = p.kind;
+      td.append(select);
+      row.append(td);
+      for (const k of ["x", "y", "z", "yaw_deg"]) field(k, "number", p[k] ?? 0);
+      for (let i = 0; i < 3; i++) field("size" + i, "number", p.size[i]);
+      field("color", "color", p.color);
+      field("asset", "text", p.asset || "", "asset");
+      const end = document.createElement("td"),
+        remove = document.createElement("button");
+      remove.textContent = "Remove";
+      remove.onclick = () => row.remove();
+      end.append(remove);
+      row.append(end);
+      $("props").querySelector("tbody").append(row);
+    }
+    function readEditor() {
+      for (const input of $("editor").querySelectorAll('input[type="number"]')) {
+        if (input.id !== "heading" &&
+            (input.value.trim() === "" || !Number.isFinite(Number(input.value)))) {
+          throw Error("Fill in all numeric fields; only heading tolerance is optional.");
+        }
+      }
+      const s = clone(draft);
+      for (const [id, key] of [
+        ["editId", "id"],
+        ["editName", "name"],
+        ["editDescription", "description"],
+        ["editFamily", "family"],
+        ["editDifficulty", "difficulty"],
+      ])
+        s[key] = $(id).value;
+      s.mode = $("mode").value;
+      s.prompt = $("prompt").value;
+      s.robot = getPose("robot");
+      s.pose_goal = getPose("pose");
+      s.image_goal.viewpoint = getPose("image");
+      const rules = JSON.parse($("languageScoring").value || "{}");
+      if (!rules || Array.isArray(rules) || typeof rules !== "object" ||
+          Object.keys(rules).some(k => !["checkpoints", "forbidden", "distractors"].includes(k))) {
+        throw Error("Language scoring must be an object with checkpoints, forbidden and/or distractors.");
+      }
+      s.evaluation = {
+        ...rules,
+        x: Number($("evalX").value),
+        y: Number($("evalY").value),
+        radius_m: Number($("radius").value),
+        timeout_s: Number($("timeout").value),
+        heading_tolerance_deg:
+          $("heading").value === "" ? null : Number($("heading").value),
+      };
+      s.motion = {
+        max_linear: Number($("maxLinear").value),
+        max_angular: Number($("maxAngular").value),
+      };
+      s.props = [...$("props").querySelectorAll("tbody tr")].map((row) => {
+        const values = Object.fromEntries(
+          [...row.querySelectorAll("[data-key]")].map((i) => [
+            i.dataset.key,
+            i.type === "number" ? Number(i.value) : i.value,
+          ]),
+        );
+        const p = {
+          id: values.id,
+          kind: values.kind,
+          x: values.x,
+          y: values.y,
+          z: values.z,
+          yaw_deg: values.yaw_deg,
+          size: [values.size0, values.size1, values.size2],
+          color: values.color,
+        };
+        if (p.kind === "usd") p.asset = values.asset;
+        return p;
+      });
+      return s;
+    }
+    $("scenarioSelect").onchange = () => {
+      setDraft(library.find((s) => s.id === $("scenarioSelect").value), true);
+      markDirty();
+    };
+    $("mode").onchange = () => {
+      draft.mode = $("mode").value;
+      savePreferences();
+      markDirty();
+    };
+    $("prompt").oninput = () => {
+      draft.prompt = $("prompt").value;
+      markDirty();
+    };
+    $("load").onclick = async () => {
+      try {
+        keys.clear();
+        $("enable").checked = false;
+        draft.mode = $("mode").value;
+        draft.prompt = $("prompt").value;
+        if(cameraDirty) { await api("/api/camera",cameraFields()); cameraDirty=false; }
+        await api("/api/scenarios/load", { scenario: draft });
+        dirty = false;
+        await refresh();
+      } catch (e) {
+        error(e);
+      }
+    };
+    $("start").onclick = async () => {
+      try {
+        await api("/api/scenarios/start", {study:$("studyName").value, repeat:Number($("repeat").value),
+          camera_name:selectedCameraName, camera:cameraFields(), checkpoint:$("checkpoint").value});
+        await refresh();
+      } catch (e) {
+        error(e);
+      }
+    };
+    $("drive").onclick = async () => {
+      try {
+        keys.clear();
+        $("enable").checked = false;
+        const action = lastState?.scenario?.phase === "manual" && lastState.scenario.model.motion_enabled
+          ? "abort" : "drive";
+        await api("/api/scenarios/" + action, { epoch: lastState.scenario.epoch });
+        await refresh();
+      } catch (e) {
+        error(e);
+      }
+    };
+    async function abort() {
+      keys.clear();
+      $("enable").checked = false;
+      try {
+        await api("/api/scenarios/abort", {});
+        await refresh();
+      } catch (e) {
+        error(e);
+      }
+    }
+    $("abort").onclick = abort;
+    $("edit").onclick = () => {
+      populateEditor();
+      $("editor").showModal();
+    };
+    $("closeEditor").onclick = () => $("editor").close();
+    $("duplicate").onclick = () => {
+      const copy = clone(draft);
+      copy.id =
+        copy.id.slice(0, 55) + "-copy-" + Date.now().toString().slice(-4);
+      copy.name += " (copy)";
+      setDraft(copy);
+      markDirty();
+      $("editor").showModal();
+    };
+    $("new").onclick = () => {
+      const x = lastState?.x || 0,
+        y = lastState?.y || 0,
+        yaw = lastState?.yaw || 0,
+        g = {
+          x: x + 2.5 * Math.cos(yaw),
+          y: y + 2.5 * Math.sin(yaw),
+          yaw_deg: (yaw * 180) / Math.PI,
+        };
+      setDraft({
+        id: "custom-" + Date.now().toString().slice(-6),
+        name: "New scenario",
+        description: "",
+        family: "custom",
+        difficulty: "custom",
+        mode: "pose",
+        prompt: "move toward the blue barrel",
+        robot: { x, y, yaw_deg: g.yaw_deg },
+        pose_goal: g,
+        image_goal: { viewpoint: clone(g) },
+        evaluation: {
+          x: g.x,
+          y: g.y,
+          radius_m: 0.75,
+          timeout_s: 120,
+          heading_tolerance_deg: null,
+        },
+        motion: { max_linear: 0.3, max_angular: 0.5 },
+        props: [],
+      });
+      markDirty();
+      $("editor").showModal();
+    };
+    $("applyDraft").onclick = () => {
+      try {
+        const s = readEditor();
+        setDraft(s);
+        markDirty();
+        $("editor").close();
+      } catch (e) {
+        $("editorError").textContent = e.message;
+      }
+    };
+    $("save").onclick = async () => {
+      try {
+        const d = await api("/api/scenarios/save", { scenario: readEditor() });
+        library = (await api("/api/scenarios")).scenarios;
+        selectOptions(d.scenario.id);
+        setDraft(d.scenario);
+        markDirty();
+        $("editor").close();
+      } catch (e) {
+        $("editorError").textContent = e.message;
+      }
+    };
+    $("addProp").onclick = () => addProp();
+    for (const b of document.querySelectorAll("[data-capture]"))
+      b.onclick = () => {
+        if (!lastState) return;
+        const p = {
+          x: lastState.x,
+          y: lastState.y,
+          yaw_deg: (lastState.yaw * 180) / Math.PI,
+        };
+        if (b.dataset.capture === "evaluation") {
+          $("evalX").value = p.x;
+          $("evalY").value = p.y;
+        } else setPose(b.dataset.capture, p);
+      };
+    $("copyGoal").onclick = () => {
+      const g = getPose("pose");
+      setPose("image", g);
+      $("evalX").value = g.x;
+      $("evalY").value = g.y;
+    };
+    $("autoImage").onclick = () => {
+      delete draft.image_goal.file;
+      $("imageFile").textContent = "Automatic capture on load";
+      markDirty();
+    };
+    $("imageUpload").onchange = async () => {
+      try {
+        const file = $("imageUpload").files[0];
+        if (!file) return;
+        const data = await new Promise((resolve, reject) => {
+          const r = new FileReader();
+          r.onload = () => resolve(r.result.split(",")[1]);
+          r.onerror = reject;
+          r.readAsDataURL(file);
+        });
+        const response = await api("/api/scenarios/image", { base64: data });
+        draft.image_goal.file = response.file;
+        $("imageFile").textContent = response.file;
+        markDirty();
+      } catch (e) {
+        $("editorError").textContent = e.message;
+      }
+    };
+    async function refresh() {
+      if (refreshPending) return;
+      refreshPending = true;
+      try {
+        const s = await api("/api/state");
+        lastState = s;
+        if (!viewerStarted && s.ready) {
+          $("viewer").src =
+            `http://${location.hostname}:8210/?streamHost=${encodeURIComponent(s.stream_host)}`;
+          viewerStarted = true;
+        }
+        $("connection").textContent = s.ready
+          ? `${s.playing ? "Simulation ready" : "Simulation paused"} · ${s.drive_mode}`
+          : "Loading scene…";
+        const q = s.scenario;
+        if (q) {
+          const m=q.model;
+          $("checkpointInfo").textContent = !q.model_online ? "Waiting for model server…" : m.checkpoint_loading ? "Loading checkpoint…" :
+            m.checkpoint_error ? "Load error: "+m.checkpoint_error :
+            !m.model_loaded ? "Loading initial checkpoint…" :
+            `Loaded: ${m.model_path || "unknown"} · step ${m.resume_step || "?"}`;
+          const r = q.run;
+          $("scenarioStatus").className = ["error", "aborted"].includes(q.phase)
+            ? "error"
+            : "";
+          $("scenarioStatus").textContent =
+            `${q.phase.toUpperCase()} · ${q.message}` +
+            (dirty ? "\nDraft changed — Load / Reset to apply." : "") +
+            (r
+              ? `\n${r.elapsed_s.toFixed(1)} s · goal ${(r.goal_distance_m ?? 0).toFixed(2)} m · travelled ${r.travelled_m.toFixed(2)} m\nContact episodes: ${r.collision_count} (recording continues)` +
+                (r.checkpoints_total ? `\nRoute gates: ${r.checkpoints_passed}/${r.checkpoints_total} · violations: ${r.route_violations.length}` : "") +
+                (r.distractor_visits?.length ? `\nDistractor visits: ${r.distractor_visits.join(", ")}` : "")
+              : "");
+          if (q.last_result && q.last_result.id !== lastResultId) {
+            lastResultId = q.last_result.id;
+            const r = q.last_result;
+            $("result").replaceChildren();
+            const title = document.createElement("p");
+            title.textContent = `Last run: ${r.scenario_id} · ${r.mode} · ${r.outcome.toUpperCase()} · ${r.elapsed_s.toFixed(1)} s · contacts ${r.collision_count}`;
+            title.className = (r.instruction_success ?? r.reached_goal) ? "good" : "";
+            const text = document.createElement("p");
+            text.className = "hint";
+            text.textContent = `Goal reached: ${r.reached_goal ? "yes" : "no"} · Collision-free arrival: ${r.collision_free_success ? "yes" : "no"}` +
+              (r.instruction_success == null ? "" : ` · Instruction success: ${r.instruction_success ? "yes" : "no"}`) +
+              (r.route_compliant == null ? "" : ` · Route compliant: ${r.route_compliant ? "yes" : "no"}`) +
+              (r.distractor_visits?.length ? ` · Distractor visits: ${r.distractor_visits.join(", ")}` : "");
+            const button = document.createElement("button");
+            button.textContent = "Download result";
+            button.onclick = () => download(r.id + ".json", r);
+            const review=document.createElement("button");
+            review.textContent="Review & score";
+            review.onclick=()=>openReview(r.id);
+            $("result").append(title, text, button, review);
+            refreshResults();
+          }
+          if (q.has_goal_image)
+            $("goalImage").src = "/api/scenarios/goal.jpg?t=" + Date.now();
+          else $("goalImage").removeAttribute("src");
+        }
+        $("currentImage").src = "/api/scenarios/camera.jpg?t=" + Date.now();
+        if (s.camera) {
+          if (!cameraDirty) {
+            ["cameraX", "cameraY", "cameraZ"].forEach((id, i) => {
+              $(id).value = s.camera.offset_m[i].toFixed(4);
+            });
+            $("cameraFov").value = s.camera.horizontal_fov_deg.toFixed(2);
+          }
+          $("cameraInfo").textContent = `Position in base: ${s.camera.position_in_base_m.map(v => v.toFixed(3)).join(", ")} m. Changes apply immediately; Compose sets restart defaults.`;
+        }
+        $("state").textContent =
+          (s.controller?.waypoint_index != null ? `Model control: waypoint ${s.controller.waypoint_index + 1} → velocity\n` : "") +
+          `Position: ${s.x.toFixed(2)}, ${s.y.toFixed(2)} m\nYaw: ${((s.yaw * 180) / Math.PI).toFixed(1)}°\nForward: ${(s.forward_speed || 0).toFixed(2)} m/s\nYaw rate: ${(s.yaw_rate || 0).toFixed(2)} rad/s\nTracking error: ${s.controller?.tracking_error_m == null ? "—" : (s.controller.tracking_error_m * 100).toFixed(1) + " cm"}`;
+        updateButtons();
+      } catch (e) {
+        $("connection").textContent = "Connection lost";
+      } finally {
+        refreshPending = false;
+      }
+    }
+    function download(name, obj) {
+      const url = URL.createObjectURL(
+          new Blob([JSON.stringify(obj, null, 2)], {
+            type: "application/json",
+          }),
+        ),
+        a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    async function refreshResults() {
+      try {
+        resultRows = (await api("/api/scenarios/results")).results;
+        const rows=filteredResults(), selected=$("reviewRun").value;
+        $("reviewRun").replaceChildren(...rows.map(r=>new Option(
+          `${r.id} · ${r.mode} · ${r.camera_name || "camera?"} · ${(r.model_path || "").split("/").pop()} · score ${r.review?.score ?? "—"}`,r.id)));
+        if(rows.some(r=>r.id===selected)) $("reviewRun").value=selected;
+        $("results").textContent =
+          rows.slice(0,8)
+            .map(
+              (r) =>
+                `${r.id}\n  ${r.mode} · ${r.outcome} · contacts ${r.collision_count} · ${r.elapsed_s.toFixed(1)} s` +
+                (r.instruction_success == null ? "" : ` · instruction ${r.instruction_success ? "pass" : "fail"}`) +
+                ` · score ${r.review?.score ?? "unscored"}`,
+            )
+            .join("\n\n") || "No recorded trials for this filter yet.";
+      } catch (e) {
+        error(e);
+      }
+    }
+    $("refreshResults").onclick = refreshResults;
+    function filteredResults() { return resultRows.filter(r=>!$("onlyStudyResults").checked || r.study===$("studyName").value); }
+    $("onlyStudyResults").onchange=refreshResults;
+    $("downloadResults").onclick = async () => { await refreshResults(); download("scenario-results.json", filteredResults()); };
+    $("downloadCsv").onclick = () => {
+      const a=document.createElement("a"); a.href="/api/scenarios/results.csv"; a.download="ablation-results.csv"; a.click();
+    };
+    function plotRun(detail) {
+      const svg=$("reviewPlot"), ns="http://www.w3.org/2000/svg", scenario=detail.snapshot.scenario, e=scenario.evaluation;
+      svg.replaceChildren();
+      const points=[scenario.robot,scenario.pose_goal,...scenario.props,...detail.samples];
+      const x0=Math.min(...points.map(p=>p.x))-2, x1=Math.max(...points.map(p=>p.x))+2;
+      const y0=Math.min(...points.map(p=>p.y))-2, y1=Math.max(...points.map(p=>p.y))+2;
+      svg.setAttribute("viewBox",`${x0} ${-y1} ${x1-x0} ${y1-y0}`);
+      function draw(tag, attrs) { const node=document.createElementNS(ns,tag); for(const[k,v]of Object.entries(attrs))node.setAttribute(k,v); svg.append(node); return node; }
+      for(const p of scenario.props) draw("rect",{x:p.x-p.size[0]/2,y:-p.y-p.size[1]/2,width:p.size[0],height:p.size[1],fill:p.color,
+        transform:`rotate(${-p.yaw_deg} ${p.x} ${-p.y})`,opacity:.85});
+      for(const gate of e.checkpoints || []) draw("rect",{x:gate.x_min,y:-gate.y_max,width:gate.x_max-gate.x_min,height:gate.y_max-gate.y_min,fill:"#8ae1ef",opacity:.3});
+      draw("circle",{cx:e.x,cy:-e.y,r:e.radius_m,fill:"#49b478",opacity:.5});
+      draw("polyline",{points:detail.samples.map(p=>`${p.x},${-p.y}`).join(" "),fill:"none",stroke:"#ffd45a","stroke-width":.07});
+      draw("circle",{cx:scenario.robot.x,cy:-scenario.robot.y,r:.16,fill:"white"});
+    }
+    async function openReview(id) {
+      try {
+        await refreshResults();
+        const r=resultRows.find(r=>r.id===(id || $("reviewRun").value));
+        if(!r) throw Error("No recorded runs match the results filter.");
+        if(![...$("reviewRun").options].some(o=>o.value===r.id)) $("reviewRun").add(new Option(r.id,r.id));
+        $("reviewRun").value=r.id; reviewing=r.id;
+        const detail=await api("/api/scenarios/run?id="+encodeURIComponent(r.id)), snap=detail.snapshot;
+        const camera=r.camera || snap.simulation?.camera || {}, model=snap.model || {};
+        $("reviewInfo").textContent=`${r.scenario_id} · ${r.mode} · ${r.study || "no study tag"} · repeat ${r.repeat || 1}\n`+
+          `${r.model_path || model.model_path} · step ${r.resume_step || model.resume_step}\n`+
+          `Camera ${r.camera_name || "custom"}: HFOV ${camera.horizontal_fov_deg?.toFixed(1)}°, mount offsets ${camera.offset_m?.map(v=>v.toFixed(4)).join(", ")} m\n`+
+          `Prompt: ${snap.scenario.prompt}\n${r.outcome} · ${r.elapsed_s.toFixed(1)} s · arrival ${r.reached_goal} · contact episodes ${r.collision_count}\n`+
+          `Route gates ${r.checkpoints_passed || 0}/${r.checkpoints_total || 0} · adherence ${r.route_compliant ?? "unscored"}\n`+
+          `Files: isaac_sim/runtime/output/scenarios/${r.id}/`;
+        for(const[control,key]of [["reviewArrival","arrival"],["reviewRoute","route_adherence"],["reviewCollision","collision_avoidance"]])
+          $(control).value=r.review?.[key] || "";
+        $("reviewScore").value=r.review?.score ?? ""; $("reviewNotes").value=r.review?.notes || "";
+        $("reviewMessage").textContent="";
+        $("reviewStart").src=`/api/scenarios/run-image?id=${encodeURIComponent(r.id)}&name=start.jpg`;
+        $("reviewEnd").src=`/api/scenarios/run-image?id=${encodeURIComponent(r.id)}&name=end.jpg`;
+        plotRun(detail);
+        if(!$("reviewDialog").open) $("reviewDialog").showModal();
+      } catch(e) { error(e); }
+    }
+    $("reviewRun").onchange=()=>openReview($("reviewRun").value);
+    $("reviewResults").onclick=()=>openReview();
+    $("closeReview").onclick=()=>$("reviewDialog").close();
+    $("saveReview").onclick=async()=> {
+      try {
+        await api("/api/scenarios/review",{id:reviewing,
+          score:$("reviewScore").value.trim()==="" ? null : Number($("reviewScore").value),
+          arrival:$("reviewArrival").value || null, route_adherence:$("reviewRoute").value || null,
+          collision_avoidance:$("reviewCollision").value || null, notes:$("reviewNotes").value});
+        $("reviewMessage").textContent="Review saved."; await refreshResults();
+      } catch(e) { $("reviewMessage").textContent=e.message; }
+    };
+    $("release").onclick = async () => {
+      try {
+        await api("/api/scenarios/release", {});
+        await refresh();
+      } catch (e) {
+        error(e);
+      }
+    };
+    async function send() {
+      if (commandPending) {
+        commandQueued = true;
+        return;
+      }
+      const speed = Math.min(1, Math.max(0, Number($("speed").value))),
+        turn = Math.min(1, Math.max(0, Number($("turn").value)));
+      commandPending = true;
+      try {
+        await api("/api/command", {
+          enabled: $("enable").checked && keys.size > 0,
+          linear: speed * (Number(keys.has("w")) - Number(keys.has("s"))),
+          angular: turn * (Number(keys.has("a")) - Number(keys.has("d"))),
+        });
+      } catch (e) {
+        error(e);
+      } finally {
+        commandPending = false;
+        if (commandQueued) {
+          commandQueued = false;
+          send();
+        }
+      }
+    }
+    function manualStop() {
+      keys.clear();
+      $("enable").checked = false;
+      send();
+    }
+    for (const b of document.querySelectorAll("[data-key]")) {
+      b.onpointerdown = (e) => {
+        b.setPointerCapture(e.pointerId);
+        keys.add(b.dataset.key);
+        send();
+      };
+      b.onpointerup = b.onpointercancel = () => {
+        keys.delete(b.dataset.key);
+        send();
+      };
+    }
+    window.addEventListener("keydown", (e) => {
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
+      if (e.code === "Space") {
+        e.preventDefault();
+        abort();
+        return;
+      }
+      const k = e.key.toLowerCase();
+      if ("wasd".includes(k) && k.length === 1) {
+        e.preventDefault();
+        keys.add(k);
+        send();
+      }
+    });
+    window.addEventListener("keyup", (e) => {
+      keys.delete(e.key.toLowerCase());
+      if ($("enable").checked) send();
+    });
+    window.addEventListener("blur", manualStop);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) manualStop();
+    });
+    $("enable").onchange = () => {
+      keys.clear();
+      send();
+    };
+    setInterval(() => {
+      if ($("enable").checked && keys.size) send();
+    }, 100);
+    (async () => {
+      try {
+        library = (await api("/api/scenarios")).scenarios;
+        $("studyName").value=preferences.studyName || "warehouse-v1";
+        $("repeat").value=preferences.repeat || 1;
+        cameraOptions();
+        selectOptions();
+        setDraft(library.find(s => s.id === $("scenarioSelect").value));
+        await refresh();
+        if (lastState?.scenario?.selected && visibleCases().some(s=>s.id===lastState.scenario.selected.id)) {
+          const s = lastState.scenario.selected;
+          $("scenarioSelect").value = s.id;
+          setDraft(s);
+        }
+        $("checkpoint").value=lastState?.scenario?.model?.model_path?.includes("finetuned-cast") ? "cast" : "original";
+        if(preferences.mode) { $("mode").value=preferences.mode; draft.mode=preferences.mode; }
+        dirty=JSON.stringify(draft)!==JSON.stringify(lastState?.scenario?.selected);
+        const matching=cameraPresets.find(p=>Math.abs(p.horizontal_fov_deg-(lastState?.camera?.horizontal_fov_deg || 0))<.01 &&
+          p.offset_m.every((v,i)=>Math.abs(v-lastState.camera.offset_m[i])<.0001));
+        if(matching) { selectedCameraName=matching.name; cameraOptions(); }
+        await refreshResults();
+        setInterval(refresh, 500);
+      } catch (e) {
+        error(e);
+      }
+    })();
+  </script>
+</html>

@@ -1,0 +1,44 @@
+services:
+  omnivla:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: omnivla:rtx5090
+    container_name: omnivla
+
+    # Same host network as the Clearpath simulator.
+    # Later this makes the ROS <-> OmniVLA bridge straightforward.
+    network_mode: host
+
+    # Give OmniVLA access to the RTX 5090.
+    gpus: all
+
+    # Useful for PyTorch / model inference shared memory.
+    ipc: host
+    shm_size: "8gb"
+
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+
+    volumes:
+      # Model checkpoints survive container rebuilds.
+      - ./models:/models
+
+      # Generated trajectories/images/logs.
+      - ./output:/output
+
+      # Avoid redownloading Hugging Face files.
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+
+      - ./src:/opt/OmniVLA
+
+      - ../datasets:/data:ro
+
+    working_dir: /opt/OmniVLA
+
+    stdin_open: true
+    tty: true
+
+    command: sleep infinity

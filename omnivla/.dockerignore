@@ -1,0 +1,23 @@
+# Only the build recipe and source are needed in the model image.
+*
+!Dockerfile
+!src/
+!src/**
+**/.git
+**/__pycache__
+**/*.pyc
+src/omnivla-original
+src/omnivla-original-balance
+src/omnivla-finetuned-cast
+src/omnivla-edge
+**/*.safetensors
+**/*.pt
+**/*.pth
+**/*.ckpt
+src/inference/diagnose_pose.py
+src/inference/plot_pose_audit.py
+src/inference/eval_dataset.py
+src/inference/test_image.py
+src/inference/test_modalities.py
+src/inference/1_ex.jpg
+src/inference/1_ex_omnivla_edge.jpg

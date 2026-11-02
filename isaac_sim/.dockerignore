@@ -1,0 +1,4 @@
+# Both images install their dependencies in-image; runtime files are bind mounts.
+*
+!Dockerfile
+!web-viewer.Dockerfile

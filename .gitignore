@@ -1,0 +1,75 @@
+# Local accounts, credentials, editor settings, and environment overrides.
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.aws/
+/.codex/
+/.agents/
+/.ssh/
+.vscode/
+.idea/
+.DS_Store
+*~
+*.swp
+*.swo
+compose.override.yaml
+compose.override.yml
+
+# Keep the existing upstream clones locally; publish their source, not Git metadata.
+**/.git/
+
+# The Gazebo/Clearpath workspace stays local; this repository targets Isaac Sim.
+/clearpath_docker/
+
+# Downloaded checkpoints, datasets, simulator caches, and experiment recordings.
+/datasets/
+/omnivla/models/
+/omnivla/output/
+/isaac_sim/runtime/
+/omnivla/src/omnivla-original
+/omnivla/src/omnivla-original-balance
+/omnivla/src/omnivla-finetuned-cast
+/omnivla/src/omnivla-edge
+# Local debugging reports/tools and example inference outputs.
+/omnivla/POSE_CONDITIONING_AUDIT.md
+/omnivla/pose_checkpoint_checksums.json
+/omnivla/src/inference/diagnose_pose.py
+/omnivla/src/inference/plot_pose_audit.py
+/omnivla/src/inference/eval_dataset.py
+/omnivla/src/inference/test_image.py
+/omnivla/src/inference/test_modalities.py
+/omnivla/src/inference/1_ex.jpg
+/omnivla/src/inference/1_ex_omnivla_edge.jpg
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+pytorch_model*.bin
+*.onnx
+*.engine
+*.bag
+*.db3
+*.mcap
+*.tfrecord*
+*.mp4
+*.webm
+*.avi
+*.log
+*.log.*
+
+# Python environments and build/test outputs. Camera examples and robot meshes stay.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+node_modules/
+wandb/

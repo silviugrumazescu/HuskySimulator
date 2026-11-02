@@ -1,0 +1,1728 @@
+schema: 1
+environment: Simple_Warehouse/full_warehouse.usd
+scenarios:
+- id: near-left
+  name: Clear nearby approach — left
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: clear_approach
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -6.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -3.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -3.5, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -3.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -2.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: near-right
+  name: Clear nearby approach — right
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: clear_approach
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -13.0, y: -6.0, yaw_deg: 90.0}
+  pose_goal: {x: -13.0, y: -3.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -13.0, y: -3.5, yaw_deg: 90.0}}
+  evaluation: {x: -13.0, y: -3.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -13.0, y: -2.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: angled-left
+  name: Nearby target on the left
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: off_axis
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -10.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.5, y: -7.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.5, y: -7.7, yaw_deg: 90.0}}
+  evaluation: {x: -11.5, y: -7.7, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.5, y: -6.2, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: angled-right
+  name: Nearby target on the right
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: off_axis
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -10.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.5, y: -7.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.5, y: -7.7, yaw_deg: 90.0}}
+  evaluation: {x: -8.5, y: -7.7, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.5, y: -6.2, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: distractor-left
+  name: Choose blue among two barrels — left
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: distractors
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -10.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.4, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.4, y: -7.5, yaw_deg: 90.0}}
+  evaluation: {x: -11.4, y: -7.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.4, y: -6.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -8.6, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: distractor-right
+  name: Choose blue among two barrels — right
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: distractors
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -10.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.6, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.6, y: -7.5, yaw_deg: 90.0}}
+  evaluation: {x: -8.6, y: -7.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.6, y: -6.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -11.4, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: crate-left
+  name: Central crate, target left
+  description: A low obstacle blocks the direct approach while keeping the blue barrel visible. Either side is available.
+  family: central_obstacle
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -12.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.8, y: -6.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.8, y: -6.5, yaw_deg: 90.0}}
+  evaluation: {x: -10.8, y: -6.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.8, y: -5.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: crate, kind: crate, x: -10.0, y: -9.2, yaw_deg: 90.0, z: 0.0, size: [0.9, 0.9, 0.35], color: '#9a7049'}
+- id: crate-right
+  name: Central crate, target right
+  description: A low obstacle blocks the direct approach while keeping the blue barrel visible. Either side is available.
+  family: central_obstacle
+  difficulty: baseline
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -12.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.2, y: -6.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.2, y: -6.5, yaw_deg: 90.0}}
+  evaluation: {x: -9.2, y: -6.5, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.2, y: -5.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: crate, kind: crate, x: -10.0, y: -9.2, yaw_deg: 90.0, z: 0.0, size: [0.9, 0.9, 0.35], color: '#9a7049'}
+- id: bypass-left
+  name: Only the left bypass is open
+  description: A low obstacle blocks the direct approach while keeping the blue barrel visible. Only one bypass is wide enough for the robot.
+  family: forced_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -14.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.45, y: -8.2, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.45, y: -8.2, yaw_deg: 90.0}}
+  evaluation: {x: -11.45, y: -8.2, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.45, y: -6.7, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -12.2, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [7.6, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -7.8, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [7.6, 0.15, 1.0], color: '#77746d'}
+  - {id: pallet_block, kind: pallet, x: -9.35, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 3.0, 0.35], color: '#9d774e'}
+- id: bypass-right
+  name: Only the right bypass is open
+  description: A low obstacle blocks the direct approach while keeping the blue barrel visible. Only one bypass is wide enough for the robot.
+  family: forced_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -14.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.55, y: -8.2, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.55, y: -8.2, yaw_deg: 90.0}}
+  evaluation: {x: -8.55, y: -8.2, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.55, y: -6.7, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -12.2, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [7.6, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -7.8, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [7.6, 0.15, 1.0], color: '#77746d'}
+  - {id: pallet_block, kind: pallet, x: -10.65, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 3.0, 0.35], color: '#9d774e'}
+- id: gap-left
+  name: Pallet passage, 1.2 m gap — left
+  description: Pass between the pallet stacks. Side walls close the outer bypasses; the central gap is 1.2 m.
+  family: narrow_passage
+  difficulty: obstacle
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -15.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -9.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -9.0, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -9.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -13.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [8.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -6.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [8.0, 0.15, 1.0], color: '#77746d'}
+  - {id: pallet_left, kind: pallet, x: -12.0, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [1.2, 2.8, 0.7], color: '#9d774e'}
+  - {id: pallet_right, kind: pallet, x: -8.0, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [1.2, 2.8, 0.7], color: '#9d774e'}
+- id: gap-right
+  name: Pallet passage, 1.2 m gap — right
+  description: Pass between the pallet stacks. Side walls close the outer bypasses; the central gap is 1.2 m.
+  family: narrow_passage
+  difficulty: obstacle
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -12.0, y: -15.0, yaw_deg: 90.0}
+  pose_goal: {x: -12.0, y: -9.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -12.0, y: -9.0, yaw_deg: 90.0}}
+  evaluation: {x: -12.0, y: -9.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -12.0, y: -7.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -15.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [8.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -8.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [8.0, 0.15, 1.0], color: '#77746d'}
+  - {id: pallet_left, kind: pallet, x: -14.0, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [1.2, 2.8, 0.7], color: '#9d774e'}
+  - {id: pallet_right, kind: pallet, x: -10.0, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [1.2, 2.8, 0.7], color: '#9d774e'}
+- id: far-left
+  name: Long aisle approach, 26 m — left
+  description: 26 m goal displacement along a clear aisle. Image mode uses one distant goal image, without a topological map.
+  family: long_aisle
+  difficulty: far / direct-image challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -8.0, y: -18.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.0, y: 8.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.0, y: 8.0, yaw_deg: 90.0}}
+  evaluation: {x: -8.0, y: 8.0, radius_m: 0.75, timeout_s: 240.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.0, y: 9.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: far-right
+  name: Long aisle approach, 26 m — right
+  description: 26 m goal displacement along a clear aisle. Image mode uses one distant goal image, without a topological map.
+  family: long_aisle
+  difficulty: far / direct-image challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -13.0, y: -18.0, yaw_deg: 90.0}
+  pose_goal: {x: -13.0, y: 8.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -13.0, y: 8.0, yaw_deg: 90.0}}
+  evaluation: {x: -13.0, y: 8.0, radius_m: 0.75, timeout_s: 240.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -13.0, y: 9.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: corner-left
+  name: Around the shelf end — left
+  description: Reach the next aisle via the north end of the existing shelving. The barrel is initially occluded; no route hints are given to the model.
+  family: shelf_corner
+  difficulty: far / occlusion challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -8.0, y: 14.0, yaw_deg: 90.0}
+  pose_goal: {x: -13.0, y: 27.0, yaw_deg: 180.0}
+  image_goal: {viewpoint: {x: -13.0, y: 27.0, yaw_deg: 180.0}}
+  evaluation: {x: -13.0, y: 27.0, radius_m: 0.75, timeout_s: 240.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -14.5, y: 27.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: corner-right
+  name: Around the shelf end — right
+  description: Reach the next aisle via the north end of the existing shelving. The barrel is initially occluded; no route hints are given to the model.
+  family: shelf_corner
+  difficulty: far / occlusion challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -13.0, y: 14.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.0, y: 27.0, yaw_deg: 0.0}
+  image_goal: {viewpoint: {x: -8.0, y: 27.0, yaw_deg: 0.0}}
+  evaluation: {x: -8.0, y: 27.0, radius_m: 0.75, timeout_s: 240.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -6.5, y: 27.0, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: slalom-left
+  name: Staggered pallet route — left
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: staggered_obstacles
+  difficulty: obstacle / occlusion challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -6.0, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -6.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -13.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -6.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: block_0, kind: pallet, x: -9.0, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_1, kind: pallet, x: -11.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_2, kind: pallet, x: -9.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+- id: slalom-right
+  name: Staggered pallet route — right
+  description: Reach the free approach region in front of the blue barrel. Collisions are recorded; the trial continues.
+  family: staggered_obstacles
+  difficulty: obstacle / occlusion challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -6.0, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -6.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -13.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -6.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: block_0, kind: pallet, x: -11.0, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_1, kind: pallet, x: -9.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_2, kind: pallet, x: -11.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+- id: hidden-left
+  name: Barrel behind a pallet stack — left
+  description: The pallet stack hides the goal object at the start. This is a search/generalization challenge, not a visible-object baseline.
+  family: occluded_target
+  difficulty: hidden-target challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -12.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.8, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.8, y: -6.0, yaw_deg: 90.0}}
+  evaluation: {x: -10.8, y: -6.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.8, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: pallet_stack, kind: pallet, x: -10.0, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.0, 1.5], color: '#9d774e'}
+- id: hidden-right
+  name: Barrel behind a pallet stack — right
+  description: The pallet stack hides the goal object at the start. This is a search/generalization challenge, not a visible-object baseline.
+  family: occluded_target
+  difficulty: hidden-target challenge
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -12.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.2, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.2, y: -6.0, yaw_deg: 90.0}}
+  evaluation: {x: -9.2, y: -6.0, radius_m: 0.75, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.2, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: pallet_stack, kind: pallet, x: -10.0, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.0, 1.5], color: '#9d774e'}
+# Language-only ladder. A/B are paired arrangements; evaluation is never a model input.
+- id: lang-01-approach-ahead-move
+  name: L01 Approach · AHEAD · move
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -10.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-01-approach-ahead-approach
+  name: L01 Approach · AHEAD · approach
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Approach the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -10.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-01-approach-left-move
+  name: L01 Approach · LEFT · move
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.6, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.6, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -11.6, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -11.6, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-01-approach-left-approach
+  name: L01 Approach · LEFT · approach
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Approach the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.6, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.6, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -11.6, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -11.6, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-01-approach-right-move
+  name: L01 Approach · RIGHT · move
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.4, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.4, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -8.4, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -8.4, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-01-approach-right-approach
+  name: L01 Approach · RIGHT · approach
+  description: One visible barrel, no added obstacles. Paired paraphrases share the exact scene.
+  family: language_01_approach
+  difficulty: baseline
+  mode: language
+  prompt: Approach the barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.4, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.4, y: -13.7, yaw_deg: 90.0}}
+  evaluation: {x: -8.4, y: -13.7, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel, kind: barrel, x: -8.4, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-02-colour-a-blue
+  name: L02 Colour · A · blue
+  description: Select by colour; the blue/red prompt pair has identical images. B swaps the objects.
+  family: language_02_colour
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.8, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.8, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.8
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -8.2, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-02-colour-a-red
+  name: L02 Colour · A · red
+  description: Select by colour; the blue/red prompt pair has identical images. B swaps the objects.
+  family: language_02_colour
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the red barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -11.8, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-03-object-a-cone
+  name: L03 Object · A · cone
+  description: Choose the named category among a cone, a wooden crate and a blue barrel. B mirrors all objects.
+  family: language_03_object
+  difficulty: baseline
+  mode: language
+  prompt: Go to the cone
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -12.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -12.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation:
+    x: -12.0
+    y: -13.7
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: crate, x: -8.0, y: -13.7, radius_m: 0.6}
+    - {label: barrel, x: -10.0, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: cone, kind: cone, x: -12.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.7, 0.7, 0.9], color: '#e9861b'}
+  - {id: crate, kind: crate, x: -8.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.8, 0.8, 0.8], color: '#9d774e'}
+  - {id: barrel, kind: barrel, x: -10.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-03-object-a-crate
+  name: L03 Object · A · crate
+  description: Choose the named category among a cone, a wooden crate and a blue barrel. B mirrors all objects.
+  family: language_03_object
+  difficulty: baseline
+  mode: language
+  prompt: Go to the crate
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.0
+    y: -13.7
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: cone, x: -12.0, y: -13.7, radius_m: 0.6}
+    - {label: barrel, x: -10.0, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: cone, kind: cone, x: -12.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.7, 0.7, 0.9], color: '#e9861b'}
+  - {id: crate, kind: crate, x: -8.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.8, 0.8, 0.8], color: '#9d774e'}
+  - {id: barrel, kind: barrel, x: -10.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-04-spatial-a-first
+  name: L04 Spatial · A · first
+  description: A tests left/right with identical barrels. B tests beside/farther from a cone, with the cone on the mirrored side.
+  family: language_04_spatial
+  difficulty: baseline
+  mode: language
+  prompt: Go to the barrel on your left
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.8, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.8, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.8
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -8.2, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel_1, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: barrel_2, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-04-spatial-a-second
+  name: L04 Spatial · A · second
+  description: A tests left/right with identical barrels. B tests beside/farther from a cone, with the cone on the mirrored side.
+  family: language_04_spatial
+  difficulty: baseline
+  mode: language
+  prompt: Go to the barrel on your right
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -11.8, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel_1, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: barrel_2, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-05-obstacle-a-move
+  name: L05 Obstacle · A · move
+  description: Visible target beyond a low crate. Both bypasses are open; either side is acceptable. B mirrors the target.
+  family: language_05_obstacle
+  difficulty: obstacle
+  mode: language
+  prompt: Move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.6, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.6, y: -10.5, yaw_deg: 90.0}}
+  evaluation: {x: -10.6, y: -10.5, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.6, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-05-obstacle-a-approach
+  name: L05 Obstacle · A · approach
+  description: Visible target beyond a low crate. Both bypasses are open; either side is acceptable. B mirrors the target.
+  family: language_05_obstacle
+  difficulty: obstacle
+  mode: language
+  prompt: Approach the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.6, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.6, y: -10.5, yaw_deg: 90.0}}
+  evaluation: {x: -10.6, y: -10.5, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.6, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-06-bypass-a-left
+  name: L06 Bypass · A · left
+  description: Same destination for both instructions. Both sides are open. Cross the requested side gate; crossing the opposite gate is recorded as a route
+    violation.
+  family: language_06_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the left of the crate, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.4, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.4, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.4
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -13.0, x_max: -11.6, y_min: -13.8, y_max: -13.2}
+    forbidden:
+    - {label: opposite_side, x_min: -8.4, x_max: -7.0, y_min: -13.8, y_max: -13.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.4, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-06-bypass-a-right
+  name: L06 Bypass · A · right
+  description: Same destination for both instructions. Both sides are open. Cross the requested side gate; crossing the opposite gate is recorded as a route
+    violation.
+  family: language_06_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the right of the crate, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.4, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.4, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.4
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -8.4, x_max: -7.0, y_min: -13.8, y_max: -13.2}
+    forbidden:
+    - {label: opposite_side, x_min: -13.0, x_max: -11.6, y_min: -13.8, y_max: -13.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.4, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-07-passage-a-between
+  name: L07 Passage · A · between
+  description: An offset 2 m gap and an open outside shortcut lead to the same barrel. The scoring gate tests the requested route.
+  family: language_07_passage
+  difficulty: obstacle
+  mode: language
+  prompt: Pass between the two wooden boxes, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -9.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -9.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -9.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: between_stacks, x_min: -11.4, x_max: -10.6, y_min: -13.2, y_max: -12.8}
+    forbidden:
+    - {label: outside_stacks, x_min: -8.1, x_max: -7.2, y_min: -13.2, y_max: -12.8}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -12.7, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -9.3, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-07-passage-a-outside
+  name: L07 Passage · A · outside
+  description: An offset 2 m gap and an open outside shortcut lead to the same barrel. The scoring gate tests the requested route.
+  family: language_07_passage
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the right of both wooden boxes, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -9.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -9.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -9.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: outside_stacks, x_min: -8.1, x_max: -7.2, y_min: -13.2, y_max: -12.8}
+    forbidden:
+    - {label: between_stacks, x_min: -11.4, x_max: -10.6, y_min: -13.2, y_max: -12.8}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -12.7, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -9.3, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-08-follow-row-a-left
+  name: L08 Follow Row · A · left
+  description: Language-only generalization probe. Follow the indicated row through two ordered gates and stay in its broad 0.6–1.85 m lateral band while
+    beside it. The central shortcut stays open.
+  family: language_08_follow_row
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Follow the row of wooden boxes on your left toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: row_entry, x_min: -11.7, x_max: -10.9, y_min: -14.6, y_max: -13.8}
+    - {label: row_exit, x_min: -11.7, x_max: -10.9, y_min: -10.3, y_max: -9.8}
+    forbidden:
+    - {label: outside_row_band_1, x_min: -10.6, x_max: -6.0, y_min: -13.7, y_max: -10.5}
+    - {label: outside_row_band_2, x_min: -14.0, x_max: -11.85, y_min: -13.7, y_max: -10.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: row_left_0, kind: pallet, x: -12.6, y: -14.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_1, kind: pallet, x: -12.6, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_2, kind: pallet, x: -12.6, y: -11.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_0, kind: pallet, x: -7.4, y: -13.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_1, kind: pallet, x: -7.4, y: -12.4, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_2, kind: pallet, x: -7.4, y: -10.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-08-follow-row-a-right
+  name: L08 Follow Row · A · right
+  description: Language-only generalization probe. Follow the indicated row through two ordered gates and stay in its broad 0.6–1.85 m lateral band while
+    beside it. The central shortcut stays open.
+  family: language_08_follow_row
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Follow the row of wooden boxes on your right toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: row_entry, x_min: -9.1, x_max: -8.3, y_min: -14.6, y_max: -13.8}
+    - {label: row_exit, x_min: -9.1, x_max: -8.3, y_min: -10.3, y_max: -9.8}
+    forbidden:
+    - {label: outside_row_band_1, x_min: -8.15, x_max: -6.0, y_min: -13.7, y_max: -10.5}
+    - {label: outside_row_band_2, x_min: -14.0, x_max: -9.4, y_min: -13.7, y_max: -10.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: row_left_0, kind: pallet, x: -12.6, y: -14.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_1, kind: pallet, x: -12.6, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_2, kind: pallet, x: -12.6, y: -11.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_0, kind: pallet, x: -7.4, y: -13.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_1, kind: pallet, x: -7.4, y: -12.4, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_2, kind: pallet, x: -7.4, y: -10.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-09-hidden-a-hidden
+  name: L09 Hidden · A · hidden
+  description: 'Two blue barrels: one initially hidden behind the tall box, one visible in the open. The landmark cue identifies the requested barrel;
+    no search memory is supplied.'
+  family: language_09_hidden
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Go to the blue barrel behind the tall wooden box on your left
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.5, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.5, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.5
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_blue_barrel, x: -8.2, y: -12.9, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: tall_stack, kind: pallet, x: -11.0, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.1, 1.8, 1.8], color: '#9d774e'}
+  - {id: hidden_blue, kind: barrel, x: -11.5, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: visible_blue, kind: barrel, x: -8.2, y: -11.4, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-09-hidden-a-visible
+  name: L09 Hidden · A · visible
+  description: 'Two blue barrels: one initially hidden behind the tall box, one visible in the open. The landmark cue identifies the requested barrel;
+    no search memory is supplied.'
+  family: language_09_hidden
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Go to the blue barrel in the open on your right
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -12.9, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -12.9, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -12.9
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_blue_barrel, x: -11.5, y: -10.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: tall_stack, kind: pallet, x: -11.0, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.1, 1.8, 1.8], color: '#9d774e'}
+  - {id: hidden_blue, kind: barrel, x: -11.5, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: visible_blue, kind: barrel, x: -8.2, y: -11.4, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-10-compound-a-between
+  name: L10 Compound · A · between
+  description: 'Two-step language challenge: take the specified passage, then find the hidden red barrel rather than the visible red distractor. Ordered
+    gates score the route without helping the robot.'
+  family: language_10_compound
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Pass between the two low wooden boxes, then approach the red barrel behind the tall wooden box on your left
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.5, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.5, y: -7.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.5
+    y: -7.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: between_short_stacks, x_min: -11.4, x_max: -10.6, y_min: -14.2, y_max: -13.8}
+    - {label: beyond_tall_stack, x_min: -13.0, x_max: -7.0, y_min: -8.7, y_max: -8.2}
+    forbidden:
+    - {label: outside_short_stacks, x_min: -8.1, x_max: -7.2, y_min: -14.2, y_max: -13.8}
+    distractors:
+    - {label: visible_red_barrel, x: -7.6, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -12.7, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -9.3, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: tall_stack, kind: pallet, x: -11.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 1.8], color: '#9d774e'}
+  - {id: hidden_red, kind: barrel, x: -11.5, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: visible_red, kind: barrel, x: -7.6, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-10-compound-a-outside
+  name: L10 Compound · A · outside
+  description: 'Two-step language challenge: take the specified passage, then find the hidden red barrel rather than the visible red distractor. Ordered
+    gates score the route without helping the robot.'
+  family: language_10_compound
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Pass to the right of both low wooden boxes, then approach the red barrel behind the tall wooden box on your left
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.5, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.5, y: -7.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.5
+    y: -7.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: outside_short_stacks, x_min: -8.1, x_max: -7.2, y_min: -14.2, y_max: -13.8}
+    - {label: beyond_tall_stack, x_min: -13.0, x_max: -7.0, y_min: -8.7, y_max: -8.2}
+    forbidden:
+    - {label: between_short_stacks, x_min: -11.4, x_max: -10.6, y_min: -14.2, y_max: -13.8}
+    distractors:
+    - {label: visible_red_barrel, x: -7.6, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -12.7, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -9.3, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: tall_stack, kind: pallet, x: -11.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 1.8], color: '#9d774e'}
+  - {id: hidden_red, kind: barrel, x: -11.5, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: visible_red, kind: barrel, x: -7.6, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-02-colour-b-blue
+  name: L02 Colour · B · blue
+  description: Select by colour; the blue/red prompt pair has identical images. B swaps the objects.
+  family: language_02_colour
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -11.8, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-02-colour-b-red
+  name: L02 Colour · B · red
+  description: Select by colour; the blue/red prompt pair has identical images. B swaps the objects.
+  family: language_02_colour
+  difficulty: baseline
+  mode: language
+  prompt: Move toward the red barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.8, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.8, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.8
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -8.2, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-03-object-b-cone
+  name: L03 Object · B · cone
+  description: Choose the named category among a cone, a wooden crate and a blue barrel. B mirrors all objects.
+  family: language_03_object
+  difficulty: baseline
+  mode: language
+  prompt: Go to the cone
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.0
+    y: -13.7
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: crate, x: -12.0, y: -13.7, radius_m: 0.6}
+    - {label: barrel, x: -10.0, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: cone, kind: cone, x: -8.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.7, 0.7, 0.9], color: '#e9861b'}
+  - {id: crate, kind: crate, x: -12.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.8, 0.8, 0.8], color: '#9d774e'}
+  - {id: barrel, kind: barrel, x: -10.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-03-object-b-crate
+  name: L03 Object · B · crate
+  description: Choose the named category among a cone, a wooden crate and a blue barrel. B mirrors all objects.
+  family: language_03_object
+  difficulty: baseline
+  mode: language
+  prompt: Go to the crate
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -12.0, y: -13.7, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -12.0, y: -13.7, yaw_deg: 90.0}}
+  evaluation:
+    x: -12.0
+    y: -13.7
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: cone, x: -8.0, y: -13.7, radius_m: 0.6}
+    - {label: barrel, x: -10.0, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: cone, kind: cone, x: -8.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.7, 0.7, 0.9], color: '#e9861b'}
+  - {id: crate, kind: crate, x: -12.0, y: -12.2, yaw_deg: 90.0, z: 0.0, size: [0.8, 0.8, 0.8], color: '#9d774e'}
+  - {id: barrel, kind: barrel, x: -10.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-04-spatial-b-first
+  name: L04 Spatial · B · first
+  description: A tests left/right with identical barrels. B tests beside/farther from a cone, with the cone on the mirrored side.
+  family: language_04_spatial
+  difficulty: baseline
+  mode: language
+  prompt: Go to the barrel beside the cone
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -11.8, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel_1, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: barrel_2, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: cone, kind: cone, x: -7.1, y: -12.6, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.8], color: '#e9861b'}
+- id: lang-04-spatial-b-second
+  name: L04 Spatial · B · second
+  description: A tests left/right with identical barrels. B tests beside/farther from a cone, with the cone on the mirrored side.
+  family: language_04_spatial
+  difficulty: baseline
+  mode: language
+  prompt: Go to the barrel farther from the cone
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.8, y: -13.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.8, y: -13.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.8
+    y: -13.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_barrel, x: -8.2, y: -13.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: barrel_1, kind: barrel, x: -8.2, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: barrel_2, kind: barrel, x: -11.8, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: cone, kind: cone, x: -7.1, y: -12.6, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.8], color: '#e9861b'}
+- id: lang-05-obstacle-b-move
+  name: L05 Obstacle · B · move
+  description: Visible target beyond a low crate. Both bypasses are open; either side is acceptable. B mirrors the target.
+  family: language_05_obstacle
+  difficulty: obstacle
+  mode: language
+  prompt: Move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.4, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.4, y: -10.5, yaw_deg: 90.0}}
+  evaluation: {x: -9.4, y: -10.5, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.4, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-05-obstacle-b-approach
+  name: L05 Obstacle · B · approach
+  description: Visible target beyond a low crate. Both bypasses are open; either side is acceptable. B mirrors the target.
+  family: language_05_obstacle
+  difficulty: obstacle
+  mode: language
+  prompt: Approach the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.4, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.4, y: -10.5, yaw_deg: 90.0}}
+  evaluation: {x: -9.4, y: -10.5, radius_m: 0.6, timeout_s: 120.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.4, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-06-bypass-b-right
+  name: L06 Bypass · B · right
+  description: Same destination for both instructions. Both sides are open. Cross the requested side gate; crossing the opposite gate is recorded as a route
+    violation.
+  family: language_06_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the right of the crate, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.6, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.6, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -9.6
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -8.4, x_max: -7.0, y_min: -13.8, y_max: -13.2}
+    forbidden:
+    - {label: opposite_side, x_min: -13.0, x_max: -11.6, y_min: -13.8, y_max: -13.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.6, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-06-bypass-b-left
+  name: L06 Bypass · B · left
+  description: Same destination for both instructions. Both sides are open. Cross the requested side gate; crossing the opposite gate is recorded as a route
+    violation.
+  family: language_06_bypass
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the left of the crate, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -9.6, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -9.6, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -9.6
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -13.0, x_max: -11.6, y_min: -13.8, y_max: -13.2}
+    forbidden:
+    - {label: opposite_side, x_min: -8.4, x_max: -7.0, y_min: -13.8, y_max: -13.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -9.6, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.5, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.8, 0.4], color: '#9d774e'}
+- id: lang-07-passage-b-between
+  name: L07 Passage · B · between
+  description: An offset 2 m gap and an open outside shortcut lead to the same barrel. The scoring gate tests the requested route.
+  family: language_07_passage
+  difficulty: obstacle
+  mode: language
+  prompt: Pass between the two wooden boxes, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -9.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -9.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -9.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: between_stacks, x_min: -9.4, x_max: -8.6, y_min: -13.2, y_max: -12.8}
+    forbidden:
+    - {label: outside_stacks, x_min: -12.8, x_max: -11.9, y_min: -13.2, y_max: -12.8}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -7.3, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -10.7, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-07-passage-b-outside
+  name: L07 Passage · B · outside
+  description: An offset 2 m gap and an open outside shortcut lead to the same barrel. The scoring gate tests the requested route.
+  family: language_07_passage
+  difficulty: obstacle
+  mode: language
+  prompt: Pass to the left of both wooden boxes, then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -9.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -9.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -9.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: outside_stacks, x_min: -12.8, x_max: -11.9, y_min: -13.2, y_max: -12.8}
+    forbidden:
+    - {label: between_stacks, x_min: -9.4, x_max: -8.6, y_min: -13.2, y_max: -12.8}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -7.3, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -10.7, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-08-follow-row-b-right
+  name: L08 Follow Row · B · right
+  description: Language-only generalization probe. Follow the indicated row through two ordered gates and stay in its broad 0.6–1.85 m lateral band while
+    beside it. The central shortcut stays open.
+  family: language_08_follow_row
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Follow the row of wooden boxes on your right toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: row_entry, x_min: -9.1, x_max: -8.3, y_min: -14.6, y_max: -13.8}
+    - {label: row_exit, x_min: -9.1, x_max: -8.3, y_min: -10.3, y_max: -9.8}
+    forbidden:
+    - {label: outside_row_band_1, x_min: -8.15, x_max: -6.0, y_min: -13.7, y_max: -10.5}
+    - {label: outside_row_band_2, x_min: -14.0, x_max: -9.4, y_min: -13.7, y_max: -10.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: row_left_0, kind: pallet, x: -7.4, y: -14.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_1, kind: pallet, x: -7.4, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_2, kind: pallet, x: -7.4, y: -11.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_0, kind: pallet, x: -12.6, y: -13.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_1, kind: pallet, x: -12.6, y: -12.4, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_2, kind: pallet, x: -12.6, y: -10.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-08-follow-row-b-left
+  name: L08 Follow Row · B · left
+  description: Language-only generalization probe. Follow the indicated row through two ordered gates and stay in its broad 0.6–1.85 m lateral band while
+    beside it. The central shortcut stays open.
+  family: language_08_follow_row
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Follow the row of wooden boxes on your left toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: row_entry, x_min: -11.7, x_max: -10.9, y_min: -14.6, y_max: -13.8}
+    - {label: row_exit, x_min: -11.7, x_max: -10.9, y_min: -10.3, y_max: -9.8}
+    forbidden:
+    - {label: outside_row_band_1, x_min: -10.6, x_max: -6.0, y_min: -13.7, y_max: -10.5}
+    - {label: outside_row_band_2, x_min: -14.0, x_max: -11.85, y_min: -13.7, y_max: -10.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: row_left_0, kind: pallet, x: -7.4, y: -14.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_1, kind: pallet, x: -7.4, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_left_2, kind: pallet, x: -7.4, y: -11.3, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_0, kind: pallet, x: -12.6, y: -13.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_1, kind: pallet, x: -12.6, y: -12.4, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: row_right_2, kind: pallet, x: -12.6, y: -10.9, yaw_deg: 90.0, z: 0.0, size: [1.4, 0.7, 1.35], color: '#9d774e'}
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-09-hidden-b-hidden
+  name: L09 Hidden · B · hidden
+  description: 'Two blue barrels: one initially hidden behind the tall box, one visible in the open. The landmark cue identifies the requested barrel;
+    no search memory is supplied.'
+  family: language_09_hidden
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Go to the blue barrel behind the tall wooden box on your right
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.5, y: -10.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.5, y: -10.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.5
+    y: -10.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_blue_barrel, x: -11.8, y: -12.9, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: tall_stack, kind: pallet, x: -9.0, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.1, 1.8, 1.8], color: '#9d774e'}
+  - {id: hidden_blue, kind: barrel, x: -8.5, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: visible_blue, kind: barrel, x: -11.8, y: -11.4, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-09-hidden-b-visible
+  name: L09 Hidden · B · visible
+  description: 'Two blue barrels: one initially hidden behind the tall box, one visible in the open. The landmark cue identifies the requested barrel;
+    no search memory is supplied.'
+  family: language_09_hidden
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Go to the blue barrel in the open on your left
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.8, y: -12.9, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.8, y: -12.9, yaw_deg: 90.0}}
+  evaluation:
+    x: -11.8
+    y: -12.9
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    distractors:
+    - {label: other_blue_barrel, x: -8.5, y: -10.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: tall_stack, kind: pallet, x: -9.0, y: -12.8, yaw_deg: 90.0, z: 0.0, size: [1.1, 1.8, 1.8], color: '#9d774e'}
+  - {id: hidden_blue, kind: barrel, x: -8.5, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: visible_blue, kind: barrel, x: -11.8, y: -11.4, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: lang-10-compound-b-between
+  name: L10 Compound · B · between
+  description: 'Two-step language challenge: take the specified passage, then find the hidden red barrel rather than the visible red distractor. Ordered
+    gates score the route without helping the robot.'
+  family: language_10_compound
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Pass between the two low wooden boxes, then approach the red barrel behind the tall wooden box on your right
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.5, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.5, y: -7.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.5
+    y: -7.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: between_short_stacks, x_min: -9.4, x_max: -8.6, y_min: -14.2, y_max: -13.8}
+    - {label: beyond_tall_stack, x_min: -13.0, x_max: -7.0, y_min: -8.7, y_max: -8.2}
+    forbidden:
+    - {label: outside_short_stacks, x_min: -12.8, x_max: -11.9, y_min: -14.2, y_max: -13.8}
+    distractors:
+    - {label: visible_red_barrel, x: -12.4, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -7.3, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -10.7, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: tall_stack, kind: pallet, x: -8.9, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 1.8], color: '#9d774e'}
+  - {id: hidden_red, kind: barrel, x: -8.5, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: visible_red, kind: barrel, x: -12.4, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: lang-10-compound-b-outside
+  name: L10 Compound · B · outside
+  description: 'Two-step language challenge: take the specified passage, then find the hidden red barrel rather than the visible red distractor. Ordered
+    gates score the route without helping the robot.'
+  family: language_10_compound
+  difficulty: language generalization challenge
+  mode: language
+  prompt: Pass to the left of both low wooden boxes, then approach the red barrel behind the tall wooden box on your right
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.5, y: -7.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.5, y: -7.5, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.5
+    y: -7.5
+    radius_m: 0.6
+    timeout_s: 120.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: outside_short_stacks, x_min: -12.8, x_max: -11.9, y_min: -14.2, y_max: -13.8}
+    - {label: beyond_tall_stack, x_min: -13.0, x_max: -7.0, y_min: -8.7, y_max: -8.2}
+    forbidden:
+    - {label: between_short_stacks, x_min: -9.4, x_max: -8.6, y_min: -14.2, y_max: -13.8}
+    distractors:
+    - {label: visible_red_barrel, x: -12.4, y: -12.5, radius_m: 0.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: short_stack_1, kind: pallet, x: -7.3, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: short_stack_2, kind: pallet, x: -10.7, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.4, 0.65], color: '#9d774e'}
+  - {id: tall_stack, kind: pallet, x: -8.9, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 1.8], color: '#9d774e'}
+  - {id: hidden_red, kind: barrel, x: -8.5, y: -6.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: visible_red, kind: barrel, x: -12.4, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+
+# Manual ablation suite A01–A20. Geometry and scoring are editable below.
+- id: study-01
+  name: A01 · Clear approach
+  description: Unobstructed visible target. Shared fixed controller for every condition.
+  family: study_01_navigation
+  difficulty: easy
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -13.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -13.4, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -13.4, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: study-02
+  name: A02 · Central obstacle, either side
+  description: Low central crate blocks the direct route; either side is valid.
+  family: study_02_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -10.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -10.4, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -10.4, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.4, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 0.45], color: '#9a7049'}
+- id: study-03
+  name: A03 · Open left corner
+  description: Comfortable unbranched 90-degree corner, 2.2 m clear width. Same centreline as its paired corner; no precision squeeze.
+  family: study_03_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: follow the corridor toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.7, y: -13.0, yaw_deg: 180.0}
+  image_goal: {viewpoint: {x: -11.7, y: -13.0, yaw_deg: 180.0}}
+  evaluation:
+    x: -11.7
+    y: -13.0
+    radius_m: 0.4
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: after_corner, x_min: -11.6, x_max: -11.15, y_min: -13.4, y_max: -12.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: wall_0, kind: box, x: -10.0, y: -18.18, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.2, 1.3], color: '#b9b5a5'}
+  - {id: wall_1, kind: box, x: -12.5, y: -14.18, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.8, 1.3], color: '#b9b5a5'}
+  - {id: wall_2, kind: box, x: -11.4, y: -11.82, yaw_deg: 90.0, z: 0.0, size: [0.16, 5.0, 1.3], color: '#b9b5a5'}
+  - {id: wall_3, kind: box, x: -8.82, y: -15.0, yaw_deg: 90.0, z: 0.0, size: [6.199999999999999, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_4, kind: box, x: -11.18, y: -16.1, yaw_deg: 90.0, z: 0.0, size: [4.0, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_5, kind: box, x: -13.98, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [2.1999999999999997, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: blue_barrel, kind: barrel, x: -12.8, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: study-04
+  name: A04 · Open right corner
+  description: Comfortable unbranched 90-degree corner, 2.2 m clear width. Same centreline as its paired corner; no precision squeeze.
+  family: study_04_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: follow the corridor toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.3, y: -13.0, yaw_deg: 0.0}
+  image_goal: {viewpoint: {x: -8.3, y: -13.0, yaw_deg: 0.0}}
+  evaluation:
+    x: -8.3
+    y: -13.0
+    radius_m: 0.4
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: after_corner, x_min: -8.85, x_max: -8.4, y_min: -13.4, y_max: -12.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: wall_0, kind: box, x: -10.0, y: -18.18, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.2, 1.3], color: '#b9b5a5'}
+  - {id: wall_1, kind: box, x: -7.5, y: -14.18, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.8, 1.3], color: '#b9b5a5'}
+  - {id: wall_2, kind: box, x: -8.6, y: -11.82, yaw_deg: 90.0, z: 0.0, size: [0.16, 5.0, 1.3], color: '#b9b5a5'}
+  - {id: wall_3, kind: box, x: -6.02, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [2.1999999999999997, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_4, kind: box, x: -8.82, y: -16.1, yaw_deg: 90.0, z: 0.0, size: [4.0, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_5, kind: box, x: -11.18, y: -15.0, yaw_deg: 90.0, z: 0.0, size: [6.199999999999999, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: blue_barrel, kind: barrel, x: -7.2, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: study-05
+  name: A05 · Moderate left corner
+  description: Comfortable unbranched 90-degree corner, 1.9 m clear width. Same centreline as its paired corner; no precision squeeze.
+  family: study_05_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: follow the corridor toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.7, y: -13.0, yaw_deg: 180.0}
+  image_goal: {viewpoint: {x: -11.7, y: -13.0, yaw_deg: 180.0}}
+  evaluation:
+    x: -11.7
+    y: -13.0
+    radius_m: 0.4
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: after_corner, x_min: -11.6, x_max: -11.15, y_min: -13.4, y_max: -12.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: wall_0, kind: box, x: -10.0, y: -18.03, yaw_deg: 90.0, z: 0.0, size: [0.16, 1.9, 1.3], color: '#b9b5a5'}
+  - {id: wall_1, kind: box, x: -12.35, y: -14.03, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.8, 1.3], color: '#b9b5a5'}
+  - {id: wall_2, kind: box, x: -11.4, y: -11.97, yaw_deg: 90.0, z: 0.0, size: [0.16, 4.7, 1.3], color: '#b9b5a5'}
+  - {id: wall_3, kind: box, x: -8.97, y: -15.0, yaw_deg: 90.0, z: 0.0, size: [5.9, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_4, kind: box, x: -11.03, y: -15.95, yaw_deg: 90.0, z: 0.0, size: [4.0, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_5, kind: box, x: -13.83, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.9000000000000004, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: blue_barrel, kind: barrel, x: -12.8, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: study-06
+  name: A06 · Moderate right corner
+  description: Comfortable unbranched 90-degree corner, 1.9 m clear width. Same centreline as its paired corner; no precision squeeze.
+  family: study_06_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: follow the corridor toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.3, y: -13.0, yaw_deg: 0.0}
+  image_goal: {viewpoint: {x: -8.3, y: -13.0, yaw_deg: 0.0}}
+  evaluation:
+    x: -8.3
+    y: -13.0
+    radius_m: 0.4
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: after_corner, x_min: -8.85, x_max: -8.4, y_min: -13.4, y_max: -12.6}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: wall_0, kind: box, x: -10.0, y: -18.03, yaw_deg: 90.0, z: 0.0, size: [0.16, 1.9, 1.3], color: '#b9b5a5'}
+  - {id: wall_1, kind: box, x: -7.65, y: -14.03, yaw_deg: 90.0, z: 0.0, size: [0.16, 2.8, 1.3], color: '#b9b5a5'}
+  - {id: wall_2, kind: box, x: -8.6, y: -11.97, yaw_deg: 90.0, z: 0.0, size: [0.16, 4.7, 1.3], color: '#b9b5a5'}
+  - {id: wall_3, kind: box, x: -6.17, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.9000000000000004, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_4, kind: box, x: -8.97, y: -15.95, yaw_deg: 90.0, z: 0.0, size: [4.0, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: wall_5, kind: box, x: -11.03, y: -15.0, yaw_deg: 90.0, z: 0.0, size: [5.9, 0.16, 1.3], color: '#b9b5a5'}
+  - {id: blue_barrel, kind: barrel, x: -7.2, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+- id: study-07
+  name: A07 · Staggered pallet maze — right first
+  description: Original staggered-pallet route geometry, mirrored pair. Alternating pallets in a 6.45 m aisle leave approximately 1.93 m bypasses. No narrowing.
+  family: study_07_navigation
+  difficulty: harder route, comfortable clearance
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -6.0, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -6.0
+    radius_m: 0.75
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: pallet_1, x_min: -8.7, x_max: -6.775, y_min: -14.25, y_max: -13.75}
+    - {label: pallet_2, x_min: -13.225, x_max: -11.3, y_min: -11.25, y_max: -10.75}
+    - {label: pallet_3, x_min: -8.7, x_max: -6.775, y_min: -8.25, y_max: -7.75}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -13.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -6.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: block_0, kind: pallet, x: -11.0, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_1, kind: pallet, x: -9.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_2, kind: pallet, x: -11.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+- id: study-08
+  name: A08 · Staggered pallet maze — left first
+  description: Original staggered-pallet route geometry, mirrored pair. Alternating pallets in a 6.45 m aisle leave approximately 1.93 m bypasses. No narrowing.
+  family: study_08_navigation
+  difficulty: harder route, comfortable clearance
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -6.0, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -6.0, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -6.0
+    radius_m: 0.75
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: pallet_1, x_min: -13.225, x_max: -11.3, y_min: -14.25, y_max: -13.75}
+    - {label: pallet_2, x_min: -8.7, x_max: -6.775, y_min: -11.25, y_max: -10.75}
+    - {label: pallet_3, x_min: -13.225, x_max: -11.3, y_min: -8.25, y_max: -7.75}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -4.5, yaw_deg: 0.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall_left, kind: box, x: -13.3, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: wall_right, kind: box, x: -6.7, y: -11.5, yaw_deg: 90.0, z: 0.0, size: [12.0, 0.15, 1.0], color: '#77746d'}
+  - {id: block_0, kind: pallet, x: -9.0, y: -14.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_1, kind: pallet, x: -11.0, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+  - {id: block_2, kind: pallet, x: -9.0, y: -8.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 4.6, 0.9], color: '#9d774e'}
+- id: study-09
+  name: A09 · Instructed left bypass
+  description: A09/A10 share the same start, props and final pose goal; only route instruction and passive scoring regions change.
+  family: study_09_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: pass left of the crate toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -10.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -10.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -10.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -14, x_max: -11, y_min: -13.9, y_max: -12.9}
+    forbidden:
+    - {label: opposite_side, x_min: -8.9, x_max: -6.2, y_min: -13.9, y_max: -12.9}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.4, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 0.45], color: '#9a7049'}
+- id: study-10
+  name: A10 · Instructed right bypass
+  description: A09/A10 share the same start, props and final pose goal; only route instruction and passive scoring regions change.
+  family: study_10_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: pass right of the crate toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -10.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -10.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -10.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: requested_side, x_min: -9, x_max: -6, y_min: -13.9, y_max: -12.9}
+    forbidden:
+    - {label: opposite_side, x_min: -13.8, x_max: -11.1, y_min: -13.9, y_max: -12.9}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: central_crate, kind: crate, x: -10.0, y: -13.4, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.6, 0.45], color: '#9a7049'}
+- id: study-11
+  name: A11 · Between boxes despite outside shortcut
+  description: Comfortable 2.0 m gap left of the direct route. Both outside routes remain open; the right outside route is shorter.
+  family: study_11_navigation
+  difficulty: hard
+  mode: language
+  prompt: pass between the two wooden boxes toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.2, y: -10.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.2, y: -10.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -8.2
+    y: -10.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: between_boxes, x_min: -12, x_max: -10, y_min: -13.3, y_max: -12.7}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -8.2, y: -9.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: box_left, kind: crate, x: -12.5, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.0, 0.7], color: '#9a7049'}
+  - {id: box_right, kind: crate, x: -9.5, y: -13.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 1.0, 0.7], color: '#9a7049'}
+- id: study-12
+  name: A12 · Follow wall, avoid open-floor shortcut
+  description: Follow beside the wall for at least 2 m before approaching the blue barrel. The direct open-floor route is available.
+  family: study_12_navigation
+  difficulty: hard
+  mode: language
+  prompt: follow the wall toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: wall_entry, x_min: -11.5, x_max: -10.8, y_min: -14.5, y_max: -14.0}
+    - {label: wall_exit, x_min: -11.5, x_max: -10.8, y_min: -11.5, y_max: -11.0}
+    forbidden:
+    - {label: leave_wall_too_early, x_min: -10.65, x_max: -6.5, y_min: -14.0, y_max: -11.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: wall, kind: box, x: -12.0, y: -12.5, yaw_deg: 90.0, z: 0.0, size: [5.0, 0.2, 1.3], color: '#b9b5a5'}
+- id: study-13
+  name: A13 · Choose blue
+  description: A13/A14 share identical props and start; the prompt and evaluation destination select different coloured barrels.
+  family: study_13_navigation
+  difficulty: easy
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.7, y: -13.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.7, y: -13.4, yaw_deg: 90.0}}
+  evaluation: {x: -11.7, y: -13.4, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.7, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: study-14
+  name: A14 · Choose red
+  description: A13/A14 share identical props and start; the prompt and evaluation destination select different coloured barrels.
+  family: study_14_navigation
+  difficulty: easy
+  mode: language
+  prompt: move toward the red barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.3, y: -13.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.3, y: -13.4, yaw_deg: 90.0}}
+  evaluation: {x: -8.3, y: -13.4, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -11.7, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -12.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+- id: study-15
+  name: A15 · Blue barrel beside couch
+  description: Two identical blue barrels; distinguish the target by its nearby landmark. A15/A16 share the scene.
+  family: study_15_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: move toward the blue barrel beside the couch
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -11.5, y: -12.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -11.5, y: -12.5, yaw_deg: 90.0}}
+  evaluation: {x: -11.5, y: -12.5, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_left, kind: barrel, x: -11.5, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: blue_right, kind: barrel, x: -8.5, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.9, y: -11.0, yaw_deg: 0.0, z: 0.0, size: [1.8, 0.85, 0.95], color: '#5f735e'}
+  - {id: crate, kind: crate, x: -7.1, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 0.9, 0.9], color: '#9a7049'}
+- id: study-16
+  name: A16 · Blue barrel beside crate
+  description: Two identical blue barrels; distinguish the target by its nearby landmark. A15/A16 share the scene.
+  family: study_16_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: move toward the blue barrel beside the crate
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -8.5, y: -12.5, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -8.5, y: -12.5, yaw_deg: 90.0}}
+  evaluation: {x: -8.5, y: -12.5, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_left, kind: barrel, x: -11.5, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: blue_right, kind: barrel, x: -8.5, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.9, y: -11.0, yaw_deg: 0.0, z: 0.0, size: [1.8, 0.85, 0.95], color: '#5f735e'}
+  - {id: crate, kind: crate, x: -7.1, y: -11.0, yaw_deg: 90.0, z: 0.0, size: [1.0, 0.9, 0.9], color: '#9a7049'}
+- id: study-17
+  name: A17 · Direct control
+  description: A17–A20 have identical props, start and blue-barrel pose goal. Landmark passage must precede final arrival; the full prompt stays unchanged.
+    No subgoal switching.
+  family: study_17_navigation
+  difficulty: intermediate
+  mode: language
+  prompt: move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.4, yaw_deg: 90.0}}
+  evaluation: {x: -10.0, y: -8.4, radius_m: 0.5, timeout_s: 150.0, heading_tolerance_deg: null}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.8, y: -12.8, yaw_deg: 0.0, z: 0.0, size: [1.9, 0.85, 0.95], color: '#5f735e'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -13.7, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: green_barrel, kind: barrel, x: -8.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#288745'}
+- id: study-18
+  name: A18 · Via couch
+  description: A17–A20 have identical props, start and blue-barrel pose goal. Landmark passage must precede final arrival; the full prompt stays unchanged.
+    No subgoal switching.
+  family: study_18_navigation
+  difficulty: hard
+  mode: language
+  prompt: pass by the couch and then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: pass_couch, x_min: -14.8, x_max: -10.8, y_min: -13.4, y_max: -12.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.8, y: -12.8, yaw_deg: 0.0, z: 0.0, size: [1.9, 0.85, 0.95], color: '#5f735e'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -13.7, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: green_barrel, kind: barrel, x: -8.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#288745'}
+- id: study-19
+  name: A19 · Via red barrel
+  description: A17–A20 have identical props, start and blue-barrel pose goal. Landmark passage must precede final arrival; the full prompt stays unchanged.
+    No subgoal switching.
+  family: study_19_navigation
+  difficulty: hard
+  mode: language
+  prompt: pass by the red barrel and then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: pass_red, x_min: -9.7, x_max: -6.7, y_min: -14.2, y_max: -13.2}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.8, y: -12.8, yaw_deg: 0.0, z: 0.0, size: [1.9, 0.85, 0.95], color: '#5f735e'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -13.7, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: green_barrel, kind: barrel, x: -8.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#288745'}
+- id: study-20
+  name: A20 · Via green barrel
+  description: A17–A20 have identical props, start and blue-barrel pose goal. Landmark passage must precede final arrival; the full prompt stays unchanged.
+    No subgoal switching.
+  family: study_20_navigation
+  difficulty: hard
+  mode: language
+  prompt: pass by the green barrel and then move toward the blue barrel
+  robot: {x: -10.0, y: -17.0, yaw_deg: 90.0}
+  pose_goal: {x: -10.0, y: -8.4, yaw_deg: 90.0}
+  image_goal: {viewpoint: {x: -10.0, y: -8.4, yaw_deg: 90.0}}
+  evaluation:
+    x: -10.0
+    y: -8.4
+    radius_m: 0.5
+    timeout_s: 150.0
+    heading_tolerance_deg: null
+    checkpoints:
+    - {label: pass_green, x_min: -9.6, x_max: -6.5, y_min: -10.5, y_max: -9.5}
+  motion: {max_linear: 0.3, max_angular: 0.5}
+  props:
+  - {id: blue_barrel, kind: barrel, x: -10.0, y: -7.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#1767c7'}
+  - {id: couch, kind: couch, x: -12.8, y: -12.8, yaw_deg: 0.0, z: 0.0, size: [1.9, 0.85, 0.95], color: '#5f735e'}
+  - {id: red_barrel, kind: barrel, x: -8.3, y: -13.7, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#c62c25'}
+  - {id: green_barrel, kind: barrel, x: -8.1, y: -10.0, yaw_deg: 90.0, z: 0.0, size: [0.6, 0.6, 0.9], color: '#288745'}

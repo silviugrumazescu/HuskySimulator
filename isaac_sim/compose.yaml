@@ -1,0 +1,161 @@
+# Capture stays separate; opt into live driving with --profile interactive.
+name: husky-isaac-milestone
+services:
+  isaac:
+    image: husky-isaac:6.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: "${USER_UID:-1001}"
+        USER_GID: "${USER_GID:-1001}"
+    user: "${USER_UID:-1001}:${USER_GID:-1001}"
+    group_add: ["1234"]  # Read/traverse NVIDIA's packaged /isaac-sim directory.
+    gpus: all
+    network_mode: host
+    shm_size: "2gb"
+    environment:
+      ACCEPT_EULA: "Y"
+      NVIDIA_DRIVER_CAPABILITIES: graphics,compute,utility,video
+      ROS_DISTRO: jazzy
+      RMW_IMPLEMENTATION: rmw_fastrtps_cpp
+      LD_LIBRARY_PATH: /isaac-sim/exts/isaacsim.ros2.core/jazzy/lib
+      ROS_LOG_DIR: /output/ros-logs
+      ISAAC_STREAM_HOST: "${ISAAC_STREAM_HOST:-auto}"
+      ISAAC_ENVIRONMENT: "${ISAAC_ENVIRONMENT:-Simple_Warehouse/full_warehouse.usd}"
+      ISAAC_SPAWN: "${ISAAC_SPAWN:-auto}"
+      ISAAC_FILL_LIGHT: "${ISAAC_FILL_LIGHT:-500}"
+      ISAAC_CAMERA_HFOV_DEG: "${ISAAC_CAMERA_HFOV_DEG:-90}"
+      ISAAC_CAMERA_OFFSET: "${ISAAC_CAMERA_OFFSET:--0.8106,0,0.4875}"
+      ISAAC_DRIVE_MODE: "${ISAAC_DRIVE_MODE:-kinematic}"
+    working_dir: /isaac-sim
+    entrypoint: ["/bin/bash"]
+    volumes:
+      - ./run_husky.py:/workspace/run_husky.py:ro
+      - ./live_husky.py:/workspace/live_husky.py:ro
+      - ./husky_controller.py:/workspace/husky_controller.py:ro
+      - ./scenario_manager.py:/workspace/scenario_manager.py:ro
+      - ./scenarios:/scenarios:rw
+      - ./drive.html:/workspace/drive.html:ro
+      - ./assets:/workspace/assets:ro
+      - ./runtime/output:/output:rw
+      - ./runtime/cache:/isaac-sim/.cache:rw
+      - ./runtime/compute-cache:/isaac-sim/.nv/ComputeCache:rw
+      - ./runtime/logs:/isaac-sim/.nvidia-omniverse/logs:rw
+      - ./runtime/config:/isaac-sim/.nvidia-omniverse/config:rw
+      - ./runtime/data:/isaac-sim/.local/share/ov/data:rw
+      - ./runtime/pkg:/isaac-sim/.local/share/ov/pkg:rw
+      - ./runtime/kit-cache:/isaac-sim/kit/cache:rw
+      - ./runtime/kit-data:/isaac-sim/kit/data:rw
+      - ./runtime/hub-cache:/var/cache/hub:rw
+    command: ["/isaac-sim/python.sh", "/workspace/run_husky.py"]
+  live:
+    extends:
+      service: isaac
+    profiles: [interactive, omnivla]
+    container_name: husky-isaac-live
+    command: ["/isaac-sim/python.sh", "/workspace/live_husky.py"]
+    healthcheck:
+      test: ["CMD", "/isaac-sim/python.sh", "-c", "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8211/api/state',timeout=2))['ready']"]
+      interval: 15s
+      timeout: 5s
+      start_period: 180s
+      retries: 20
+  viewer:
+    profiles: [interactive, omnivla]
+    image: husky-isaac-viewer:2.1.5
+    build:
+      context: .
+      dockerfile: web-viewer.Dockerfile
+    ports: ["127.0.0.1:8210:80"]
+    depends_on:
+      live:
+        condition: service_healthy
+  omnivla:
+    profiles: [omnivla]
+    depends_on:
+      live:
+        condition: service_healthy
+    image: omnivla:rtx5090
+    container_name: husky-isaac-omnivla
+    user: "${USER_UID:-1001}:${USER_GID:-1001}"
+    gpus: all
+    network_mode: host
+    shm_size: "8gb"
+    working_dir: /opt/OmniVLA
+    environment:
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      XDG_CACHE_HOME: /output/cache
+      HF_HOME: /cache/huggingface
+      HF_MODULES_CACHE: /output/hf-modules
+      MPLCONFIGDIR: /output/matplotlib
+    volumes:
+      - ../omnivla/src:/opt/OmniVLA:ro
+      - ../omnivla/models:/models:ro
+      - ${HOME}/.cache/huggingface:/cache/huggingface:ro
+      - ./runtime/omnivla:/output:rw
+    command:
+      - python
+      - inference/omnivla_inference_server.py
+      - --model-path
+      - /models/${OMNIVLA_MODEL:-omnivla-original}
+      - --resume-step
+      - "${OMNIVLA_RESUME_STEP:-120000}"
+      - --mode
+      - language
+      - --host
+      - 127.0.0.1
+      - --dashboard-host
+      - 127.0.0.1
+      # Starting values for the current Isaac wheel/contact model; tune in the dashboard.
+      - --max-linear
+      - "${OMNIVLA_MAX_LINEAR:-0.10}"
+      - --max-angular
+      - "${OMNIVLA_MAX_ANGULAR:-0.50}"
+      - --steering-gain
+      - "${OMNIVLA_STEERING_GAIN:-1.0}"
+      - --execution-mode
+      - "${ISAAC_DRIVE_MODE:-kinematic}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8080/api/status',timeout=2))['model_loaded']"]
+      interval: 10s
+      timeout: 5s
+      start_period: 120s
+      retries: 30
+  bridge:
+    profiles: [omnivla]
+    image: ghcr.io/clearpathrobotics/clearpath_docker:jazzy-dev-latest
+    container_name: husky-isaac-omnivla-bridge
+    user: "${USER_UID:-1001}:${USER_GID:-1001}"
+    network_mode: host
+    ipc: host
+    environment:
+      ROS_DOMAIN_ID: "84"
+      RMW_IMPLEMENTATION: rmw_fastrtps_cpp
+      # Isaac and this container have separate shared-memory namespaces.
+      FASTDDS_BUILTIN_TRANSPORTS: UDPv4
+      ROS_LOG_DIR: /output/ros-logs
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - ../bridge/omnivla_ros_bridge.py:/workspace/omnivla_ros_bridge.py:ro
+      - ./runtime/omnivla:/output:rw
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - >-
+        source /opt/ros/jazzy/setup.bash &&
+        exec python3 /workspace/omnivla_ros_bridge.py
+        --camera-topic /a200_0000/sensors/camera_0/color/image
+        --odom-topic /a200_0000/platform/odom/filtered
+        --cmd-topic /a200_0000/cmd_vel
+        --rate ${OMNIVLA_INFERENCE_RATE:-1.0}
+        --execution-mode ${ISAAC_DRIVE_MODE:-kinematic}
+        --kinematic-controller ${OMNIVLA_KINEMATIC_CONTROLLER:-waypoint}
+        --waypoint-index ${OMNIVLA_WAYPOINT_INDEX:-4}
+        --ros-args -p use_sim_time:=true
+    depends_on:
+      live:
+        condition: service_healthy
+      omnivla:
+        condition: service_healthy
